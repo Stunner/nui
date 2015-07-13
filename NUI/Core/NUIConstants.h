@@ -14,4 +14,5 @@ static NSString * const kNUIClassNone               = @"none";
 
 static void * const kNUIAssociatedClassKey          = "nuiClass";
 static void * const kNUIAssociatedAppliedFlagKey    = "nuiIsApplied";
+static void * const kNUIAssociatedRenderOverrideKey = "nuiRenderOverrideBlock";
 static void * const kNUIAssociatedGradientLayerKey  = "nuiGradientLayer";

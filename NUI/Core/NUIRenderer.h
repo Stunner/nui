@@ -31,19 +31,11 @@
 #import "NUIWindowRenderer.h"
 #import "UIView+NUI.h"
 
-@protocol NUIRendererDelegate <NSObject>
-@optional
-- (BOOL)setBackgroundColor:(UIColor *)color forButton:(UIButton *)button forState:(UIControlState)state;
-
-@end
-
 @interface NUIRenderer : NSObject
 
 @property(nonatomic)BOOL rerenderOnOrientationChange;
-@property(nonatomic,unsafe_unretained)id<NUIRendererDelegate> delegte;
 
 + (void)rerender;
-+ (void)setDelegate:(id<NUIRendererDelegate>)delegate;
 
 + (void)renderBarButtonItem:(UIBarButtonItem*)item;
 + (void)renderBarButtonItem:(UIBarButtonItem*)item withClass:(NSString*)className;

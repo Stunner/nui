@@ -16,6 +16,6 @@
 
 @interface NUIButtonRenderer : NSObject
 
-+ (void)render:(UIButton*)button withClass:(NSString*)className delegate:(id<NUIRendererDelegate>)delegate;
++ (void)render:(UIButton*)button withClass:(NSString*)className;
 
 @end

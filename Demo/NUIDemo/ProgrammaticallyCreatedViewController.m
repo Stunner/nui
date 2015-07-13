@@ -7,6 +7,7 @@
 //
 
 #import "ProgrammaticallyCreatedViewController.h"
+#import "STAButton.h"
 
 @interface ProgrammaticallyCreatedViewController ()<UITextFieldDelegate>
 

@@ -19,7 +19,6 @@
 {
     [NUISettings init];
     
-    [NUIRenderer setDelegate:self];
     // Or use this call to use a specific stylesheet
     //[NUISettings initWithStylesheet:@"Blue.NUI"];
 
@@ -48,14 +47,14 @@
     return YES;
 }
 
-- (BOOL)setBackgroundColor:(UIColor *)color forButton:(UIButton *)button forState:(UIControlState)state {
-    NSLog(@"set background color for button: %@ value: %@", button, color);
-    if ([button isKindOfClass:[STAButton class]]) {
-        [(STAButton *)button setBackgroundColor:color forState:state];
-        return NO;
-    }
-    return YES;
-}
+//- (BOOL)setBackgroundColor:(UIColor *)color forButton:(UIButton *)button forState:(UIControlState)state {
+//    NSLog(@"set background color for button: %@ value: %@", button, color);
+//    if ([button isKindOfClass:[STAButton class]]) {
+//        [(STAButton *)button setBackgroundColor:color forState:state];
+//        return NO;
+//    }
+//    return YES;
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

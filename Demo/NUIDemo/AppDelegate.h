@@ -11,7 +11,7 @@
 #import "NUIDemoTableViewController.h"
 #import "NUIRenderer.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, NUIRendererDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

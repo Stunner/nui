@@ -16,7 +16,6 @@ static NUIRenderer *gInstance = nil;
 
 + (void)setDelegate:(id<NUIRendererDelegate>)delegate {
     gInstance = [self getInstance];
-    gInstance.delegte = delegate;
 }
 
 + (void)renderBarButtonItem:(UIBarButtonItem*)item
@@ -31,12 +30,12 @@ static NUIRenderer *gInstance = nil;
 
 + (void)renderButton:(UIButton*)button
 {
-    [NUIButtonRenderer render:button withClass:@"Button" delegate:gInstance.delegte];
+    [NUIButtonRenderer render:button withClass:@"Button"];
 }
 
 + (void)renderButton:(UIButton*)button withClass:(NSString*)className
 {
-    [NUIButtonRenderer render:button withClass:className delegate:gInstance.delegte];
+    [NUIButtonRenderer render:button withClass:className];
 }
 
 + (void)renderControl:(UIControl*)control

@@ -91,4 +91,12 @@
     return [nuiAppliedFlagNumber boolValue];
 }
 
+- (void)setRenderOverrideBlock:(BOOL (^)(id, UIControlState))renderOverrideBlock {
+    objc_setAssociatedObject(self, kNUIAssociatedRenderOverrideKey, renderOverrideBlock, OBJC_ASSOCIATION_COPY);
+}
+
+- (BOOL (^)(id, UIControlState))renderOverrideBlock {
+    return objc_getAssociatedObject(self, kNUIAssociatedRenderOverrideKey);
+}
+
 @end
