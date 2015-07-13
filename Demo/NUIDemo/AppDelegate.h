@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "NUIAppearance.h"
 #import "NUIDemoTableViewController.h"
+#import "NUIRenderer.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, NUIRendererDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11E2620" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="saZ-5Q-ZQI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" promptedForUpgradeToXcode5="NO" initialViewController="saZ-5Q-ZQI">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <deployment identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Controls-->
+        <!--Controls-->
         <scene sceneID="aHH-J0-DaF">
             <objects>
                 <viewController id="ERX-jm-icm" customClass="ViewController" sceneMemberID="viewController">
@@ -18,7 +19,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Large Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -28,12 +29,12 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="nuiClass" value="Button:LargeButton"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="trZ-cA-9Q3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="trZ-cA-9Q3" customClass="STAButton">
                                 <rect key="frame" x="20" y="89" width="74" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -45,7 +46,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <state key="normal" title="Small">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -130,7 +131,7 @@
             </objects>
             <point key="canvasLocation" x="1010" y="-247"/>
         </scene>
-        <!--Programmatically Created View Controller - Created By Code-->
+        <!--Created By Code-->
         <scene sceneID="kww-0m-DV3">
             <objects>
                 <viewController id="QSl-4a-Qez" customClass="ProgrammaticallyCreatedViewController" sceneMemberID="viewController">
@@ -145,7 +146,7 @@
             </objects>
             <point key="canvasLocation" x="1446" y="-247"/>
         </scene>
-        <!--Demo Table View Controller - Table View-->
+        <!--Table View-->
         <scene sceneID="ALA-NQ-ahm">
             <objects>
                 <tableViewController id="ZrP-fA-LgW" customClass="NUIDemoTableViewController" sceneMemberID="viewController">
@@ -210,7 +211,7 @@
             </objects>
             <point key="canvasLocation" x="-50" y="36"/>
         </scene>
-        <!--Navigation Controller - Table View-->
+        <!--Table View-->
         <scene sceneID="gYs-p9-KoR">
             <objects>
                 <navigationController id="yKS-uI-aO1" sceneMemberID="viewController">
@@ -229,7 +230,7 @@
             </objects>
             <point key="canvasLocation" x="484" y="389"/>
         </scene>
-        <!--Navigation Controller - Controls-->
+        <!--Controls-->
         <scene sceneID="Vgr-TL-IgG">
             <objects>
                 <navigationController id="5gO-X7-z36" sceneMemberID="viewController">
@@ -249,17 +250,6 @@
             <point key="canvasLocation" x="484" y="-247"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NUIDemoTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NUIDemoTableViewController.h"/>
-        </class>
-        <class className="ProgrammaticallyCreatedViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProgrammaticallyCreatedViewController.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

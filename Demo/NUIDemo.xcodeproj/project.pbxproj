@@ -94,6 +94,7 @@
 		89B940801671418200850A9A /* NUIViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B940451671418100850A9A /* NUIViewRenderer.m */; };
 		89B940811671418200850A9A /* NUIStyle.nss in Resources */ = {isa = PBXBuildFile; fileRef = 89B940461671418100850A9A /* NUIStyle.nss */; };
 		89B940841671418200850A9A /* NUIViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 89B9404A1671418100850A9A /* NUIViewBackground.png */; };
+		9344BECD1B50B28F0068F2C6 /* STAButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9344BEA71B50B28F0068F2C6 /* STAButton.m */; };
 		B51BC28A169724A3004A38F8 /* UISwitch+NUI.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BC289169724A3004A38F8 /* UISwitch+NUI.m */; };
 		B51BC28E16972527004A38F8 /* NUISwitchRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BC28D16972527004A38F8 /* NUISwitchRenderer.m */; };
 		CB8A031017CC1F7C0065A7DD /* NUITextViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8A030F17CC1F7C0065A7DD /* NUITextViewRenderer.m */; };
@@ -257,6 +258,8 @@
 		89B940451671418100850A9A /* NUIViewRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIViewRenderer.m; sourceTree = "<group>"; };
 		89B940461671418100850A9A /* NUIStyle.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NUIStyle.nss; sourceTree = "<group>"; };
 		89B9404A1671418100850A9A /* NUIViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NUIViewBackground.png; sourceTree = "<group>"; };
+		9344BEA61B50B28F0068F2C6 /* STAButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAButton.h; sourceTree = "<group>"; };
+		9344BEA71B50B28F0068F2C6 /* STAButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAButton.m; sourceTree = "<group>"; };
 		B51BC288169724A3004A38F8 /* UISwitch+NUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwitch+NUI.h"; sourceTree = "<group>"; };
 		B51BC289169724A3004A38F8 /* UISwitch+NUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+NUI.m"; sourceTree = "<group>"; };
 		B51BC28C16972527004A38F8 /* NUISwitchRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUISwitchRenderer.h; sourceTree = "<group>"; };
@@ -442,6 +445,7 @@
 		4A0B863B165EE59A005B5756 /* NUIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9344BEA41B50B28F0068F2C6 /* STAControls */,
 				89B940211671418100850A9A /* NUI */,
 				4A0B8685165F1382005B5756 /* NUIDemoTableViewController.h */,
 				4A0B8686165F1383005B5756 /* NUIDemoTableViewController.m */,
@@ -635,6 +639,23 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		9344BEA41B50B28F0068F2C6 /* STAControls */ = {
+			isa = PBXGroup;
+			children = (
+				9344BEA51B50B28F0068F2C6 /* Button */,
+			);
+			path = STAControls;
+			sourceTree = "<group>";
+		};
+		9344BEA51B50B28F0068F2C6 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				9344BEA61B50B28F0068F2C6 /* STAButton.h */,
+				9344BEA71B50B28F0068F2C6 /* STAButton.m */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		EAB69CA91885E1AE00358420 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +747,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 4A0B8626165EE59A005B5756;
 			productRefGroup = 4A0B8632165EE59A005B5756 /* Products */;
@@ -878,6 +900,7 @@
 				89B940731671418200850A9A /* NUIRenderer.m in Sources */,
 				89B940741671418200850A9A /* NUISettings.m in Sources */,
 				89B940751671418200850A9A /* NUIStyleParser.m in Sources */,
+				9344BECD1B50B28F0068F2C6 /* STAButton.m in Sources */,
 				89B940761671418200850A9A /* NUIUtilities.m in Sources */,
 				89B940771671418200850A9A /* NUIBarButtonItemRenderer.m in Sources */,
 				89B940781671418200850A9A /* NUIButtonRenderer.m in Sources */,

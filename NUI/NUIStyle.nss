@@ -28,8 +28,7 @@ BarButton {
     text-shadow-color: clear;
 }
 Button {
-    background-color-top: #FFFFFF;
-    background-color-bottom: @primaryBackgroundColorBottom;
+    background-color: lightGray;
     border-color: @primaryBorderColor;
     border-width: @primaryBorderWidth;
     font-color: @primaryFontColor;

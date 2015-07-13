@@ -12,8 +12,10 @@
 #import "NUIRenderer.h"
 #import "NUISettings.h"
 
+@protocol NUIRendererDelegate;
+
 @interface NUIButtonRenderer : NSObject
 
-+ (void)render:(UIButton*)button withClass:(NSString*)className;
++ (void)render:(UIButton*)button withClass:(NSString*)className delegate:(id<NUIRendererDelegate>)delegate;
 
 @end
