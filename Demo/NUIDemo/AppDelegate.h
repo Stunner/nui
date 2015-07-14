@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NUIAppearance.h"
 #import "NUIDemoTableViewController.h"
+#import "NUIRenderer.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -8,10 +8,15 @@
 
 #import "NUIRenderer.h"
 #import "UIProgressView+NUI.h"
+#import "NUIButtonRenderer.h"
 
 @implementation NUIRenderer
 
 static NUIRenderer *gInstance = nil;
+
++ (void)setDelegate:(id<NUIRendererDelegate>)delegate {
+    gInstance = [self getInstance];
+}
 
 + (void)renderBarButtonItem:(UIBarButtonItem*)item
 {
@@ -275,7 +280,7 @@ static NUIRenderer *gInstance = nil;
     for (UIView *subview in view.subviews) {
         [self rerenderView:subview];
     }
-
+    
     if ([view respondsToSelector:@selector(applyNUI)]){
         [view applyNUI];
     }
@@ -293,10 +298,10 @@ static NUIRenderer *gInstance = nil;
 + (void)setRerenderOnOrientationChange:(BOOL)rerender
 {
     NUIRenderer *instance = [self getInstance];
-
+    
     if (instance.rerenderOnOrientationChange != rerender) {
         instance.rerenderOnOrientationChange = rerender;
-
+        
         if (rerender) {
             [self addOrientationDidChangeObserver:self];
         } else {
@@ -325,9 +330,9 @@ static NUIRenderer *gInstance = nil;
 + (void)orientationDidChange:(NSNotification *)notification
 {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-
+    
     BOOL didReload = [NUISettings reloadStylesheetsOnOrientationChange:orientation];
-
+    
     if (didReload)
         [NUIRenderer rerender];
 }

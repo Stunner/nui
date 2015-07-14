@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "STAButton.h"
 
 @implementation AppDelegate {
     NSMutableArray *demoItems;
@@ -17,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [NUISettings init];
-        
+    
     // Or use this call to use a specific stylesheet
     //[NUISettings initWithStylesheet:@"Blue.NUI"];
 
@@ -45,6 +46,15 @@
     
     return YES;
 }
+
+//- (BOOL)setBackgroundColor:(UIColor *)color forButton:(UIButton *)button forState:(UIControlState)state {
+//    NSLog(@"set background color for button: %@ value: %@", button, color);
+//    if ([button isKindOfClass:[STAButton class]]) {
+//        [(STAButton *)button setBackgroundColor:color forState:state];
+//        return NO;
+//    }
+//    return YES;
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

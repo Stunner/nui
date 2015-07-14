@@ -12,6 +12,22 @@
 
 @implementation NUIButtonRenderer
 
++ (void)applyProperty:(id)propertyName
+            withClass:(NSString*)className
+             onButton:(UIButton*)button
+             forState:(UIControlState)state
+{
+    BOOL applyStyle = YES;
+    if (button.renderOverrideBlock) {
+        applyStyle = button.renderOverrideBlock([NUISettings getColor:propertyName withClass:className],
+                                                state);
+    }
+    if (applyStyle) {
+        [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]
+                          forState:state];
+    }
+}
+
 + (void)render:(UIButton*)button withClass:(NSString*)className
 {
     [NUIViewRenderer renderSize:button withClass:className];
@@ -31,23 +47,35 @@
     }
     
     // Set background color
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImageFromColor:@"background-color" withClass:className] forState:UIControlStateNormal];
+    NSString *propertyName = @"background-color";
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [NUIButtonRenderer applyProperty:propertyName withClass:className
+                                onButton:button forState:UIControlStateNormal];
     }
-    if ([NUISettings hasProperty:@"background-color-highlighted" withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImageFromColor:@"background-color-highlighted" withClass:className] forState:UIControlStateHighlighted];
+    propertyName = @"background-color-highlighted";
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [NUIButtonRenderer applyProperty:propertyName withClass:className
+                                onButton:button forState:UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:@"background-color-selected" withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImageFromColor:@"background-color-selected" withClass:className] forState:UIControlStateSelected];
+    propertyName = @"background-color-selected";
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [NUIButtonRenderer applyProperty:propertyName withClass:className
+                                onButton:button forState:UIControlStateSelected];
     }
-    if ([NUISettings hasProperty:@"background-color-selected-highlighted" withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImageFromColor:@"background-color-selected-highlighted" withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+    propertyName = @"background-color-selected-highlighted";
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [NUIButtonRenderer applyProperty:propertyName withClass:className
+                                onButton:button forState:UIControlStateSelected|UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:@"background-color-selected-disabled" withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImageFromColor:@"background-color-selected-disabled" withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+    propertyName = @"background-color-selected-disabled";
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [NUIButtonRenderer applyProperty:propertyName withClass:className
+                                onButton:button forState:UIControlStateSelected|UIControlStateDisabled];
     }
-    if ([NUISettings hasProperty:@"background-color-disabled" withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImageFromColor:@"background-color-disabled" withClass:className] forState:UIControlStateDisabled];
+    propertyName = @"background-color-disabled";
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [NUIButtonRenderer applyProperty:propertyName withClass:className
+                                onButton:button forState:UIControlStateDisabled];
     }
     
     // Set background gradient

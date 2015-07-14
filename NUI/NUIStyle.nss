@@ -28,8 +28,8 @@ BarButton {
     text-shadow-color: clear;
 }
 Button {
-    background-color-top: #FFFFFF;
-    background-color-bottom: @primaryBackgroundColorBottom;
+    background-color: black;
+    background-color-highlighted: yellow;
     border-color: @primaryBorderColor;
     border-width: @primaryBorderWidth;
     font-color: @primaryFontColor;
@@ -42,6 +42,7 @@ Button {
     exclude-subviews: UITableViewCell,UITextField;
 }
 LargeButton {
+    background-color: lightGray;
     height: 50;
     font-size: 20;
     corner-radius: 10;
