@@ -19,8 +19,13 @@
 {
     BOOL applyStyle = YES;
     if (button.renderOverrideBlock) {
-        applyStyle = button.renderOverrideBlock([NUISettings getColor:propertyName withClass:className],
-                                                state);
+        NUIRenderContainer *container = [NUIRenderContainer new];
+        container.object = button;
+        container.propertyName = propertyName;
+        container.className = className;
+        container.state = state;
+        container.appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        applyStyle = button.renderOverrideBlock(container);
     }
     if (applyStyle) {
         [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]

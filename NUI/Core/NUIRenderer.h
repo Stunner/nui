@@ -30,6 +30,9 @@
 #import "NUIViewRenderer.h"
 #import "NUIWindowRenderer.h"
 #import "UIView+NUI.h"
+#import "NUIRenderContainer.h"
+
+//typedef BOOL (^NUIRenderOverrideBlock)(NUIRenderContainer *renderContainer);
 
 @interface NUIRenderer : NSObject
 
