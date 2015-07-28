@@ -36,6 +36,7 @@
 + (void)setAutoUpdatePath:(NSString*)path;
 + (BOOL)hasProperty:(NSString*)property withClass:(NSString*)className;
 + (BOOL)hasFontPropertiesWithClass:(NSString*)className;
++ (NSDictionary*)allPropertiesForClass:(NSString*)className;
 + (id)get:(NSString*)property withClass:(NSString*)className;
 + (BOOL)getBoolean:(NSString*)property withClass:(NSString*)className;
 + (float)getFloat:(NSString*)property withClass:(NSString*)className;

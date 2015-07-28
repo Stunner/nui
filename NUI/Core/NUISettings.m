@@ -142,6 +142,15 @@ static NUISettings *instance = nil;
            [self hasProperty:@"font-size" withClass:className];
 }
 
++ (NSDictionary*)allPropertiesForClass:(NSString*)className {
+    NSDictionary *ruleSet = nil;
+    NSArray *classes = [self getClasses:className];
+    for (NSString *inheritedClass in classes) {
+        ruleSet = [instance.styles objectForKey:inheritedClass];
+    }
+    return ruleSet;
+}
+
 + (id)get:(NSString*)property withExplicitClass:(NSString*)className
 {
     NSMutableDictionary *ruleSet = [instance.styles objectForKey:className];

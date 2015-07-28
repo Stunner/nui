@@ -40,6 +40,7 @@ Button {
     corner-radius: 7;
     exclude-views: UIAlertButton;
     exclude-subviews: UITableViewCell,UITextField;
+    daffoldil: someValue;
 }
 LargeButton {
     background-color: lightGray;

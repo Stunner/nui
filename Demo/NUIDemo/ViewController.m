@@ -25,7 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    __weak __typeof__(self) weakSelf = self;
     [self.largeButton setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
         if ([container.object isKindOfClass:[STAButton class]]) {
             STAButton *button = container.object;
