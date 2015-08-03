@@ -10,56 +10,11 @@
 #import "NUIViewRenderer.h"
 #import "UIButton+NUI.h"
 
-NSString * const kPadding = @"padding";
-NSString * const kBackgroundColor = @"background-color";
-NSString * const kBackgroundColorHighlighted = @"background-color-highlighted";
-NSString * const kBackgroundColorSelected = @"background-color-selected";
-NSString * const kBackgroundColorSelectedHighlighted = @"background-color-selected-highlighted";
-NSString * const kBackgroundColorSelectedDisabled = @"background-color-selected-disabled";
-NSString * const kBackgroundColorDisabled = @"background-color-disabled";
-NSString * const kBackgroundColorTop = @"background-color-top";
-NSString * const kBackgroundColorBottom = @"background-color-bottom";
-
-NSString * const kBackgroundImage = @"background-image";
-NSString * const kBackgroundImageHighlighted = @"background-image-highlighted";
-NSString * const kBackgroundImageSelected = @"background-image-selected";
-NSString * const kBackgroundImageSelectedHighlighted = @"background-image-selected-highlighted";
-NSString * const kBackgroundImageSelectedDisabled = @"background-image-selected-disabled";
-NSString * const kBackgroundImageDisabled = @"background-image-disabled";
-
-NSString * const kImage = @"image";
-NSString * const kImageHighlighted = @"image-highlighted";
-NSString * const kImageSelected = @"image-selected";
-NSString * const kImageSelectedHighlighted = @"image-selected-highlighted";
-NSString * const kImageSelectedDisabled = @"image-selected-disabled";
-NSString * const kImageDisabled = @"image-disabled";
-
-NSString * const kTextAlign = @"text-align";
-
-NSString * const kFontColor = @"font-color";
-NSString * const kFontColorHighlighted = @"font-color-highlighted";
-NSString * const kFontColorSelected = @"font-color-selected";
-NSString * const kFontColorSelectedHighlighted = @"font-color-selected-highlighted";
-NSString * const kFontColorSelectedDisabled = @"font-color-selected-disabled";
-NSString * const kFontColorDisabled = @"font-color-disabled";
-
-NSString * const kTextShadowColor = @"text-shadow-color";
-NSString * const kTextShadowColorHighlighted = @"text-shadow-color-highlighted";
-NSString * const kTextShadowColorSelected = @"text-shadow-color-selected";
-NSString * const kTextShadowColorSelectedHighlighted = @"text-shadow-color-selected-highlighted";
-NSString * const kTextShadowColorSelectedDisabled = @"text-shadow-color-selected-disabled";
-NSString * const kTextShadowColorDisabled = @"text-shadow-color-disabled";
-
-NSString * const kTitleInsets = @"title-insets";
-NSString * const kContentInsets = @"content-insets";
-
-NSString * const kCornerRadius = @"corner-radius";
-
 @implementation NUIButtonRenderer
 
 + (void)render:(UIButton*)button withClass:(NSString*)className
 {
-    NSSet *unrecognizedProperties = [self unrecognizedPropertiesForClass:className];
+    NSSet *unrecognizedProperties = [NUISettings unrecognizedPropertiesForClass:className];
     NSLog(@"unrecognizedProperties: %@", unrecognizedProperties);
     
     [NUIViewRenderer renderSize:button withClass:className];

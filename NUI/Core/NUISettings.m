@@ -9,6 +9,12 @@
 #import "NUISettings.h"
 #import "NUIAppearance.h"
 
+@interface NUISettings ()
+
+@property (nonatomic, strong) NSArray *supportedPropertiesArray;
+
+@end
+
 @implementation NUISettings
 
 @synthesize autoUpdatePath;
@@ -31,6 +37,32 @@ static NUISettings *instance = nil;
     instance.stylesheetOrientation = [self stylesheetOrientationFromInterfaceOrientation:orientation];
     NUIStyleParser *parser = [[NUIStyleParser alloc] init];
     instance.styles = [parser getStylesFromFile:name];
+    
+    NSArray *array = @[kPadding, kBackgroundColor, kBackgroundColorHighlighted,
+                       kBackgroundColorSelected, kBackgroundColorSelectedHighlighted,
+                       kBackgroundColorSelectedDisabled, kBackgroundColorDisabled,
+                       kBackgroundColorTop, kBackgroundColorBottom,
+                       
+                       kBackgroundImage, kBackgroundImageHighlighted, kBackgroundImageSelected,
+                       kBackgroundImageSelectedHighlighted, kBackgroundImageSelectedDisabled,
+                       kBackgroundImageDisabled,
+                       
+                       kImage, kImageHighlighted, kImageSelected, kImageSelectedHighlighted,
+                       kImageSelectedDisabled, kImageDisabled,
+                       
+                       kTextAlign,
+                       
+                       kFontName, kFontSize, kFontColor, kFontColorHighlighted, kFontColorSelected,
+                       kFontColorSelectedHighlighted, kFontColorSelectedDisabled, kFontColorDisabled,
+                       
+                       kTextShadowColor, kTextShadowColorHighlighted, kTextShadowColorSelected,
+                       kTextShadowColorSelectedHighlighted, kTextShadowColorSelectedDisabled,
+                       kTextShadowColorDisabled,
+                       
+                       kTitleInsets, kContentInsets,
+                       
+                       kCornerRadius];
+    instance.supportedPropertiesArray = array;
     
     [NUIAppearance init];
 }
@@ -138,8 +170,8 @@ static NUISettings *instance = nil;
 
 + (BOOL)hasFontPropertiesWithClass:(NSString*)className
 {
-    return [self hasProperty:@"font-name" withClass:className] ||
-           [self hasProperty:@"font-size" withClass:className];
+    return [self hasProperty:kFontName withClass:className] ||
+           [self hasProperty:kFontSize withClass:className];
 }
 
 + (NSDictionary*)allPropertiesForClass:(NSString*)className {
@@ -214,15 +246,15 @@ static NUISettings *instance = nil;
     CGFloat fontSize;
     UIFont *font = nil;
     
-    propertyName = @"font-size";
+    propertyName = kFontSize;
     
     if ([self hasProperty:propertyName withClass:className]) {
-        fontSize = [self getFloat:@"font-size" withClass:className];
+        fontSize = [self getFloat:propertyName withClass:className];
     } else {
         fontSize = baseFont ? baseFont.pointSize : [UIFont systemFontSize];
     }
     
-    propertyName = @"font-name";
+    propertyName = kFontName;
     
     if ([self hasProperty:propertyName withClass:className]) {
         NSString *fontName = [self get:propertyName withClass:className];
@@ -312,6 +344,17 @@ static NUISettings *instance = nil;
 + (NSString *)stylesheetOrientationFromInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     return UIInterfaceOrientationIsLandscape(orientation) ? @"landscape" : @"portrait";
+}
+
++ (NSSet *)unrecognizedPropertiesForClass:(NSString *)className
+{
+    NSSet *propertyKeys = [NSSet setWithArray:[self getInstance].supportedPropertiesArray];
+    NSDictionary *dictionary = [NUISettings allPropertiesForClass:className];
+    NSSet *receivedKeys = [NSSet setWithArray:[dictionary allKeys]];
+    NSMutableSet *unrecognizedProperties = [NSMutableSet setWithCapacity:receivedKeys.count];
+    [unrecognizedProperties setSet:receivedKeys];
+    [unrecognizedProperties minusSet:propertyKeys];
+    return unrecognizedProperties;
 }
 
 + (NUISettings*)getInstance
