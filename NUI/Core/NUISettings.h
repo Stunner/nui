@@ -11,6 +11,12 @@
 #import "NUIStyleParser.h"
 #import "NUISwizzler.h"
 
+static NSString * const kExcludeViews = @"exclude-views";
+static NSString * const kExcludeSubviews = @"exclude-subviews";
+
+static NSString * const kHeight = @"height";
+static NSString * const kWidth = @"width";
+
 static NSString * const kPadding = @"padding";
 static NSString * const kBackgroundColor = @"background-color";
 static NSString * const kBackgroundColorHighlighted = @"background-color-highlighted";
@@ -20,6 +26,9 @@ static NSString * const kBackgroundColorSelectedDisabled = @"background-color-se
 static NSString * const kBackgroundColorDisabled = @"background-color-disabled";
 static NSString * const kBackgroundColorTop = @"background-color-top";
 static NSString * const kBackgroundColorBottom = @"background-color-bottom";
+
+static NSString * const kBorderColor = @"border-color";
+static NSString * const kBorderWidth = @"border-width";
 
 static NSString * const kBackgroundImage = @"background-image";
 static NSString * const kBackgroundImageHighlighted = @"background-image-highlighted";

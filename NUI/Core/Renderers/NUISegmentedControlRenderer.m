@@ -22,8 +22,8 @@
         if ([NUISettings hasProperty:@"background-image-selected" withClass:className]) {
             [control setBackgroundImage:[NUISettings getImage:@"background-image-selected" withClass:className] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
         }
-    } else if ([NUISettings hasProperty:@"background-color" withClass:className] ||
-               [NUISettings hasProperty:@"border-color" withClass:className]) {
+    } else if ([NUISettings hasProperty:kBackgroundColor withClass:className] ||
+               [NUISettings hasProperty:kBorderColor withClass:className]) {
         CALayer *layer = [NUIGraphics roundedRectLayerWithClass:className size:control.bounds.size];
         UIImage *normalImage = [NUIGraphics roundedRectImageWithClass:className layer:layer];
         
@@ -33,8 +33,8 @@
         UIImage *selectedImage = [NUIGraphics roundedRectImageWithClass:className layer:layer];
         [control setBackgroundImage:normalImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         [control setBackgroundImage:selectedImage forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-        if ([NUISettings hasProperty:@"border-color" withClass:className]) {
-            [control setDividerImage:[NUISettings getImageFromColor:@"border-color" withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        if ([NUISettings hasProperty:kBorderColor withClass:className]) {
+            [control setDividerImage:[NUISettings getImageFromColor:kBorderColor withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         }
     }
     

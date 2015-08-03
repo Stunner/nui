@@ -49,8 +49,8 @@
         [bar setScopeBarButtonTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
     }
     
-    if ([NUISettings hasProperty:@"background-color" withClass:scopeBarClassName] ||
-        [NUISettings hasProperty:@"border-color" withClass:scopeBarClassName]) {
+    if ([NUISettings hasProperty:kBackgroundColor withClass:scopeBarClassName] ||
+        [NUISettings hasProperty:kBorderColor withClass:scopeBarClassName]) {
         CALayer *layer = [NUIGraphics roundedRectLayerWithClass:scopeBarClassName size:bar.bounds.size];
         UIImage *normalImage = [NUIGraphics roundedRectImageWithClass:scopeBarClassName layer:layer];
         
@@ -61,8 +61,8 @@
         [bar setScopeBarButtonBackgroundImage:normalImage forState:UIControlStateNormal];
         [bar setScopeBarButtonBackgroundImage:selectedImage forState:UIControlStateSelected];
         
-        if ([NUISettings hasProperty:@"border-color" withClass:scopeBarClassName]) {
-            [bar setScopeBarButtonDividerImage:[NUISettings getImageFromColor:@"border-color" withClass:scopeBarClassName] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal];
+        if ([NUISettings hasProperty:kBorderColor withClass:scopeBarClassName]) {
+            [bar setScopeBarButtonDividerImage:[NUISettings getImageFromColor:kBorderColor withClass:scopeBarClassName] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal];
         }
     }
     

@@ -12,14 +12,14 @@
 
 + (void)render:(UIView*)view withClass:(NSString*)className
 {
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
         if ([NUISettings hasProperty:@"background-repeat" withClass:className] && ![NUISettings getBoolean:@"background-repeat" withClass:className]) {
-            view.layer.contents = (__bridge id)[NUISettings getImage:@"background-image" withClass:className].CGImage;
+            view.layer.contents = (__bridge id)[NUISettings getImage:kBackgroundImage withClass:className].CGImage;
         } else {
-            [view setBackgroundColor: [NUISettings getColorFromImage:@"background-image" withClass: className]];
+            [view setBackgroundColor: [NUISettings getColorFromImage:kBackgroundImage withClass:className]];
         }
-    } else if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [view setBackgroundColor: [NUISettings getColor:@"background-color" withClass: className]];
+    } else if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [view setBackgroundColor: [NUISettings getColor:kBackgroundColor withClass:className]];
     }
 
     [self renderSize:view withClass:className];
@@ -31,16 +31,16 @@
 {
     CALayer *layer = [view layer];
     
-    if ([NUISettings hasProperty:@"border-color" withClass:className]) {
-        [layer setBorderColor:[[NUISettings getColor:@"border-color" withClass:className] CGColor]];
+    if ([NUISettings hasProperty:kBorderColor withClass:className]) {
+        [layer setBorderColor:[[NUISettings getColor:kBorderColor withClass:className] CGColor]];
     }
     
-    if ([NUISettings hasProperty:@"border-width" withClass:className]) {
-        [layer setBorderWidth:[NUISettings getFloat:@"border-width" withClass:className]];
+    if ([NUISettings hasProperty:kBorderWidth withClass:className]) {
+        [layer setBorderWidth:[NUISettings getFloat:kBorderWidth withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"corner-radius" withClass:className]) {
-        [layer setCornerRadius:[NUISettings getFloat:@"corner-radius" withClass:className]];
+    if ([NUISettings hasProperty:kCornerRadius withClass:className]) {
+        [layer setCornerRadius:[NUISettings getFloat:kCornerRadius withClass:className]];
         layer.masksToBounds = YES;
     }
 }
@@ -69,13 +69,13 @@
 + (void)renderSize:(UIView*)view withClass:(NSString*)className
 {
     CGFloat height = view.frame.size.height;
-    if ([NUISettings hasProperty:@"height" withClass:className]) {
-        height = [NUISettings getFloat:@"height" withClass:className];
+    if ([NUISettings hasProperty:kHeight withClass:className]) {
+        height = [NUISettings getFloat:kHeight withClass:className];
     }
     
     CGFloat width = view.frame.size.width;
-    if ([NUISettings hasProperty:@"width" withClass:className]) {
-        width = [NUISettings getFloat:@"width" withClass:className];
+    if ([NUISettings hasProperty:kWidth withClass:className]) {
+        width = [NUISettings getFloat:kWidth withClass:className];
     }
 
     if (height != view.frame.size.height || width != view.frame.size.width) {

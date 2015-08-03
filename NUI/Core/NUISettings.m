@@ -38,10 +38,16 @@ static NUISettings *instance = nil;
     NUIStyleParser *parser = [[NUIStyleParser alloc] init];
     instance.styles = [parser getStylesFromFile:name];
     
-    NSArray *array = @[kPadding, kBackgroundColor, kBackgroundColorHighlighted,
+    NSArray *array = @[kExcludeViews, kExcludeSubviews,
+                       
+                       kHeight, kWidth,
+                       
+                       kPadding, kBackgroundColor, kBackgroundColorHighlighted,
                        kBackgroundColorSelected, kBackgroundColorSelectedHighlighted,
                        kBackgroundColorSelectedDisabled, kBackgroundColorDisabled,
                        kBackgroundColorTop, kBackgroundColorBottom,
+                       
+                       kBorderColor, kBorderWidth,
                        
                        kBackgroundImage, kBackgroundImageHighlighted, kBackgroundImageSelected,
                        kBackgroundImageSelectedHighlighted, kBackgroundImageSelectedDisabled,
