@@ -114,7 +114,7 @@ static NSString * const kCornerRadius = @"corner-radius";
 + (void)setGlobalExclusions:(NSArray*)globalExclusions;
 + (NSString *)stylesheetOrientation;
 
-+ (NSSet *)unrecognizedPropertiesForClass:(NSString *)className;
++ (NSDictionary *)unrecognizedPropertiesForClass:(NSString *)className;
 
 @end
 

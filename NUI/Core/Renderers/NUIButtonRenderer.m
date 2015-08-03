@@ -14,8 +14,22 @@
 
 + (void)render:(UIButton*)button withClass:(NSString*)className
 {
-    NSSet *unrecognizedProperties = [NUISettings unrecognizedPropertiesForClass:className];
-    NSLog(@"unrecognizedProperties: %@", unrecognizedProperties);
+    NSDictionary *unrecognizedPropertyDictionary = [NUISettings unrecognizedPropertiesForClass:className];
+    NSLog(@"unrecognizedProperties: %@", unrecognizedPropertyDictionary);
+    if (unrecognizedPropertyDictionary.count > 0) {
+        if (button.renderOverrideBlock) {
+            for (NSString *unrecognizedPropertyKey in [unrecognizedPropertyDictionary allKeys]) {
+                NUIRenderContainer *container = [NUIRenderContainer new];
+                container.recognizedProperty = NO;
+                container.object = button;
+                container.propertyName = unrecognizedPropertyKey;
+                container.value = [unrecognizedPropertyDictionary objectForKey:unrecognizedPropertyKey];
+                container.className = className;
+                container.appliedProperty = [NUISettings getColor:unrecognizedPropertyKey withClass:className];
+                button.renderOverrideBlock(container);
+            }
+        }
+    }
     
     [NUIViewRenderer renderSize:button withClass:className];
     // UIButtonTypeRoundedRect's first two sublayers contain its background and border, which
@@ -243,6 +257,7 @@
     BOOL applyStyle = YES;
     if (button.renderOverrideBlock) {
         NUIRenderContainer *container = [NUIRenderContainer new];
+        container.recognizedProperty = YES;
         container.object = button;
         container.propertyName = propertyName;
         container.className = className;

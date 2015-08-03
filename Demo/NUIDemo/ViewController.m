@@ -26,7 +26,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     [self.largeButton setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
-        if ([container.object isKindOfClass:[STAButton class]]) {
+        NSLog(@"render container: %@", container);
+        if (container.recognizedProperty && [container.object isKindOfClass:[STAButton class]]) {
             STAButton *button = container.object;
             [button setBackgroundColor:container.appliedProperty forState:container.state];
             return NO;
@@ -34,7 +35,8 @@
         return YES;
     }];
     [self.button setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
-        if ([container.object isKindOfClass:[STAButton class]]) {
+        NSLog(@"render container: %@", container);
+        if (container.recognizedProperty && [container.object isKindOfClass:[STAButton class]]) {
             STAButton *button = container.object;
             [button setBackgroundColor:container.appliedProperty forState:container.state];
             return NO;
@@ -42,6 +44,7 @@
         return YES;
     }];
     [self.smallButton setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
+        NSLog(@"render container: %@", container);
         return YES;
     }];
 }

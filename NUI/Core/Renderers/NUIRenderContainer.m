@@ -10,4 +10,12 @@
 
 @implementation NUIRenderContainer
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"==NUIRenderContainer:==\nrecognized property: %d\n"
+            @"object: %@\npropertyName: %@\nvalue: %@\nclass name: %@\nstate: %lu\napplied property: %@\n"
+            "===========",
+            self.recognizedProperty, self.object, self.propertyName, self.value, self.className,
+            (unsigned long)self.state, self.appliedProperty];
+}
+
 @end

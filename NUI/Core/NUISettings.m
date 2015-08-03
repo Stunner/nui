@@ -352,7 +352,7 @@ static NUISettings *instance = nil;
     return UIInterfaceOrientationIsLandscape(orientation) ? @"landscape" : @"portrait";
 }
 
-+ (NSSet *)unrecognizedPropertiesForClass:(NSString *)className
++ (NSDictionary *)unrecognizedPropertiesForClass:(NSString *)className
 {
     NSSet *propertyKeys = [NSSet setWithArray:[self getInstance].supportedPropertiesArray];
     NSDictionary *dictionary = [NUISettings allPropertiesForClass:className];
@@ -360,7 +360,12 @@ static NUISettings *instance = nil;
     NSMutableSet *unrecognizedProperties = [NSMutableSet setWithCapacity:receivedKeys.count];
     [unrecognizedProperties setSet:receivedKeys];
     [unrecognizedProperties minusSet:propertyKeys];
-    return unrecognizedProperties;
+    
+    NSMutableDictionary *returnableDictionary = [[NSMutableDictionary alloc] initWithCapacity:unrecognizedProperties.count];
+    for (NSString *property in unrecognizedProperties) {
+        [returnableDictionary setObject:[dictionary objectForKey:property] forKey:property];
+    }
+    return returnableDictionary;
 }
 
 + (NUISettings*)getInstance
