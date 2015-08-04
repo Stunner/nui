@@ -23,7 +23,7 @@
                 container.recognizedProperty = NO;
                 container.object = button;
                 container.propertyName = unrecognizedPropertyKey;
-                container.value = [unrecognizedPropertyDictionary objectForKey:unrecognizedPropertyKey];
+                container.propertyValue = [unrecognizedPropertyDictionary objectForKey:unrecognizedPropertyKey];
                 container.className = className;
                 container.appliedProperty = [NUISettings getColor:unrecognizedPropertyKey withClass:className];
                 button.renderOverrideBlock(container);
@@ -260,6 +260,7 @@
         container.recognizedProperty = YES;
         container.object = button;
         container.propertyName = propertyName;
+        container.propertyValue = [NUISettings get:propertyName withClass:className];
         container.className = className;
         container.state = state;
         container.appliedProperty = [NUISettings getColor:propertyName withClass:className];

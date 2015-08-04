@@ -13,7 +13,7 @@
 @property (nonatomic, assign) BOOL recognizedProperty;
 @property (nonatomic, strong) id object;
 @property (nonatomic, strong) NSString *propertyName;
-@property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) NSString *propertyValue;
 @property (nonatomic, strong) NSString *className;
 @property (nonatomic, assign) UIControlState state;
 @property (nonatomic, strong) id appliedProperty;

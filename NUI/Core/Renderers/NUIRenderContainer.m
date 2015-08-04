@@ -14,7 +14,7 @@
     return [NSString stringWithFormat:@"==NUIRenderContainer:==\nrecognized property: %d\n"
             @"object: %@\npropertyName: %@\nvalue: %@\nclass name: %@\nstate: %lu\napplied property: %@\n"
             "===========",
-            self.recognizedProperty, self.object, self.propertyName, self.value, self.className,
+            self.recognizedProperty, self.object, self.propertyName, self.propertyValue, self.className,
             (unsigned long)self.state, self.appliedProperty];
 }
 
