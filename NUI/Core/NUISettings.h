@@ -101,12 +101,12 @@ static NSString * const kSelectedImageTintColor = @"selected-image-tint-color";
 static NSString * const kSeparatorColor = @"separator-color";
 static NSString * const kSeparatorStyle = @"separator-style";
 
+static NSString * const kShadowColor = @"shadow-color";
 static NSString * const kShadowImage = @"shadow-image";
 static NSString * const kShadowImageTop = @"shadow-image-top";
 static NSString * const kShadowImageBottom = @"shadow-image-bottom";
 static NSString * const kShadowRadius = @"shadow-radius";
 static NSString * const kShadowOffset = @"shadow-offset";
-static NSString * const kShadowColor = @"shadow-color";
 static NSString * const kShadowOpacity = @"shadow-opacity";
 
 static NSString * const kTextAlign = @"text-align";
@@ -130,8 +130,8 @@ static NSString * const kThumbImage = @"thumb-image";
 static NSString * const kTitleInsets = @"title-insets";
 static NSString * const kTitleVerticalOffset = @"title-vertical-offset";
 
-static NSString * const kTrackTintColor = @"track-tint-color";
 static NSString * const kTrackImage = @"track-image";
+static NSString * const kTrackTintColor = @"track-tint-color";
 
 //////////////////////////////////////////////////////
 

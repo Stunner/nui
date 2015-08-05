@@ -38,36 +38,67 @@ static NUISettings *instance = nil;
     NUIStyleParser *parser = [[NUIStyleParser alloc] init];
     instance.styles = [parser getStylesFromFile:name];
     
-    NSArray *array = @[kExcludeViews, kExcludeSubviews,
+    NSArray *array = @[kHeight, kWidth,
                        
-                       kHeight, kWidth,
+                       kVerticalAlign,
                        
-                       kPadding, kBackgroundColor, kBackgroundColorHighlighted,
+                       kBackgroundColor, kBackgroundTintColor, kBackgroundColorHighlighted,
                        kBackgroundColorSelected, kBackgroundColorSelectedHighlighted,
                        kBackgroundColorSelectedDisabled, kBackgroundColorDisabled,
-                       kBackgroundColorTop, kBackgroundColorBottom,
+                       kBackgroundColorTop, kBackgroundColorTopSelected, kBackgroundColorBottom,
+                       kBackgroundColorBottomSelected, kBackgroundRepeat,
                        
-                       kBorderColor, kBorderWidth,
-                       
-                       kBackgroundImage, kBackgroundImageHighlighted, kBackgroundImageSelected,
+                       kBackgroundImage, kBackgroundImageTop, kBackgroundImageTopLandscape,
+                       kBackgroundImageBottom, kBackgroundImageBottomLandscape,
+                       kBackgroundImageHighlighted, kBackgroundImageSelected,
                        kBackgroundImageSelectedHighlighted, kBackgroundImageSelectedDisabled,
                        kBackgroundImageDisabled,
+                       
+                       kBarTintColor,
+                       
+                       kBorderStyle, kBorderColor, kBorderWidth,
+                       
+                       kContentInsets, kCornerRadius,
+                       
+                       kDividerColor, kDividerImage,
+                       
+                       kExcludeViews, kExcludeSubviews,
+                       
+                       kFinishedImage, kFinishedImageSelected,
+                       
+                       kFontColor, kFontColorHighlighted, kFontColorSelected, kFontColorSelectedHighlighted,
+                       kFontColorSelectedDisabled, kFontColorDisabled, kFontName, kFontSize,
                        
                        kImage, kImageHighlighted, kImageSelected, kImageSelectedHighlighted,
                        kImageSelectedDisabled, kImageDisabled,
                        
-                       kTextAlign,
+                       kMinimumTrackTintColor, kMaximumTrackTintColor, kMinimumValueImage, kMaximumValueImage,
                        
-                       kFontName, kFontSize, kFontColor, kFontColorHighlighted, kFontColorSelected,
-                       kFontColorSelectedHighlighted, kFontColorSelectedDisabled, kFontColorDisabled,
+                       kOffImage, kOnImage,
                        
-                       kTextShadowColor, kTextShadowColorHighlighted, kTextShadowColorSelected,
+                       kPadding, kProgressImage, kProgressTintColor,
+                       
+                       kRowHeight,
+                       
+                       kScopeBackgroundColor, kScopeBackgroundImage,
+                       
+                       kSelectedImage, kSelectedImageTintColor,
+                       
+                       kSeparatorColor, kSeparatorStyle,
+                       
+                       kShadowColor, kShadowImage, kShadowImageTop, kShadowImageBottom, kShadowRadius,
+                       kShadowOffset, kShadowOpacity,
+                       
+                       kTextAlign, kTextAlpha, kTextAutoFit, kTextOffset, kTextShadowColor,
+                       kTextShadowColorHighlighted, kTextShadowColorSelected,
                        kTextShadowColorSelectedHighlighted, kTextShadowColorSelectedDisabled,
-                       kTextShadowColorDisabled,
+                       kTextShadowColorDisabled, kTextShadowOffset, kTextTransform,
                        
-                       kTitleInsets, kContentInsets,
+                       kTintColor, kOnTintColor, kThumbTintColor, kThumbImage,
                        
-                       kCornerRadius];
+                       kTitleInsets, kTitleVerticalOffset,
+                       
+                       kTrackImage, kTrackTintColor];
     instance.supportedPropertiesArray = array;
     
     [NUIAppearance init];
