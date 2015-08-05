@@ -16,19 +16,11 @@
 {
     NSDictionary *unrecognizedPropertyDictionary = [NUISettings unrecognizedPropertiesForClass:className];
     NSLog(@"unrecognizedProperties: %@", unrecognizedPropertyDictionary);
-    if (unrecognizedPropertyDictionary.count > 0) {
-        if (button.renderOverrideBlock) {
-            for (NSString *unrecognizedPropertyKey in [unrecognizedPropertyDictionary allKeys]) {
-                NUIRenderContainer *container = [NUIRenderContainer new];
-                container.recognizedProperty = NO;
-                container.object = button;
-                container.propertyName = unrecognizedPropertyKey;
-                container.propertyValue = [unrecognizedPropertyDictionary objectForKey:unrecognizedPropertyKey];
-                container.className = className;
-                container.appliedProperty = [NUISettings getColor:unrecognizedPropertyKey withClass:className];
-                button.renderOverrideBlock(container);
-            }
-        }
+    if (unrecognizedPropertyDictionary.count > 0 && button.renderOverrideBlock) {
+        [NUISettings alertObject:button
+                       withClass:className
+         ofUnsupportedProperties:unrecognizedPropertyDictionary
+                       withBlock:button.renderOverrideBlock];
     }
     
     [NUIViewRenderer renderSize:button withClass:className];

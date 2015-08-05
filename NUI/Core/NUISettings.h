@@ -10,6 +10,9 @@
 #import "NUIConverter.h"
 #import "NUIStyleParser.h"
 #import "NUISwizzler.h"
+#import "NUIRenderContainer.h"
+
+typedef BOOL (^NUIRenderOverrideBlock)(NUIRenderContainer *renderContainer);
 
 //////////////////////////////////////////////////////
 //////////////// DEFINED PROPERTIES //////////////////
@@ -183,6 +186,10 @@ static NSString * const kTrackTintColor = @"track-tint-color";
 + (NSString *)stylesheetOrientation;
 
 + (NSDictionary *)unrecognizedPropertiesForClass:(NSString *)className;
++ (void)alertObject:(id)object
+          withClass:(NSString*)className
+ofUnsupportedProperties:(NSDictionary*)properties
+          withBlock:(NUIRenderOverrideBlock)block;
 
 @end
 

@@ -212,10 +212,14 @@ static NUISettings *instance = nil;
 }
 
 + (NSDictionary*)allPropertiesForClass:(NSString*)className {
-    NSDictionary *ruleSet = nil;
+    NSMutableDictionary *ruleSet = nil;
     NSArray *classes = [self getClasses:className];
     for (NSString *inheritedClass in classes) {
-        ruleSet = [instance.styles objectForKey:inheritedClass];
+        if (!ruleSet) {
+            ruleSet = [[NSMutableDictionary alloc] initWithDictionary:[instance.styles objectForKey:inheritedClass]];
+        } else {
+            [ruleSet addEntriesFromDictionary:[instance.styles objectForKey:inheritedClass]];
+        }
     }
     return ruleSet;
 }
@@ -397,6 +401,22 @@ static NUISettings *instance = nil;
         [returnableDictionary setObject:[dictionary objectForKey:property] forKey:property];
     }
     return returnableDictionary;
+}
+
++ (void)alertObject:(id)object
+          withClass:(NSString*)className
+ofUnsupportedProperties:(NSDictionary*)properties
+          withBlock:(NUIRenderOverrideBlock)block
+{
+    for (NSString *unrecognizedPropertyKey in [properties allKeys]) {
+        NUIRenderContainer *container = [NUIRenderContainer new];
+        container.recognizedProperty = NO;
+        container.object = object;
+        container.propertyName = unrecognizedPropertyKey;
+        container.propertyValue = [properties objectForKey:unrecognizedPropertyKey];
+        container.className = className;
+        block(container);
+    }
 }
 
 + (NUISettings*)getInstance
