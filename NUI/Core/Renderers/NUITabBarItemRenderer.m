@@ -24,27 +24,27 @@
         [item setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];
     }
 
-    if ([NUISettings hasProperty:@"text-offset" withClass:className]) {
-        [item setTitlePositionAdjustment:[NUISettings getOffset:@"text-offset" withClass:className]];
+    if ([NUISettings hasProperty:kTextOffset withClass:className]) {
+        [item setTitlePositionAdjustment:[NUISettings getOffset:kTextOffset withClass:className]];
     }
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-    if ([NUISettings hasProperty:@"finished-image" withClass:className]) {
-        UIImage *unselectedFinishedImage = [[NUISettings getImage:@"finished-image" withClass:className] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if ([NUISettings hasProperty:kFinishedImage withClass:className]) {
+        UIImage *unselectedFinishedImage = [[NUISettings getImage:kFinishedImage withClass:className] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [item setImage:unselectedFinishedImage];
     }
     
-    if ([NUISettings hasProperty:@"finished-image-selected" withClass:className]) {
-        UIImage *selectedFinishedImage = [[NUISettings getImage:@"finished-image-selected" withClass:className] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if ([NUISettings hasProperty:kFinishedImageSelected withClass:className]) {
+        UIImage *selectedFinishedImage = [[NUISettings getImage:kFinishedImageSelected withClass:className] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [item setSelectedImage:selectedFinishedImage];
     }
 #else
-    if ([NUISettings hasProperty:@"finished-image" withClass:className]) {
-        UIImage *unselectedFinishedImage = [NUISettings getImage:@"finished-image" withClass:className];
+    if ([NUISettings hasProperty:kFinishedImage withClass:className]) {
+        UIImage *unselectedFinishedImage = [NUISettings getImage:kFinishedImage withClass:className];
         UIImage *selectedFinishedImage = unselectedFinishedImage;
         
-        if ([NUISettings hasProperty:@"finished-image-selected" withClass:className]) {
-            selectedFinishedImage = [NUISettings getImage:@"finished-image-selected" withClass:className];
+        if ([NUISettings hasProperty:kFinishedImageSelected withClass:className]) {
+            selectedFinishedImage = [NUISettings getImage:kFinishedImageSelected withClass:className];
         }
         
         [item setFinishedSelectedImage:selectedFinishedImage withFinishedUnselectedImage:unselectedFinishedImage];

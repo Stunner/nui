@@ -11,8 +11,8 @@
 
 + (void)render:(UIWindow*)window withClass:(NSString*)className
 {
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [window.rootViewController.view setBackgroundColor:[NUISettings getColor:@"background-color" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [window.rootViewController.view setBackgroundColor:[NUISettings getColor:kBackgroundColor withClass:className]];
     }
 }
 

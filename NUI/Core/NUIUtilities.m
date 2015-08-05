@@ -14,9 +14,9 @@
 {
     NSMutableDictionary *titleTextAttributes = [NSMutableDictionary dictionary];
     
-    NSString *fontColorSelector = [NUIUtilities selector:@"font-color" withSuffix:suffix];
-    NSString *textShadowColorSelector = [NUIUtilities selector:@"text-shadow-color" withSuffix:suffix];
-    NSString *textShadowOffsetSelector = [NUIUtilities selector:@"text-shadow-offset" withSuffix:suffix];
+    NSString *fontColorSelector = [NUIUtilities selector:kFontColor withSuffix:suffix];
+    NSString *textShadowColorSelector = [NUIUtilities selector:kTextShadowColor withSuffix:suffix];
+    NSString *textShadowOffsetSelector = [NUIUtilities selector:kTextShadowOffset withSuffix:suffix];
     
     if ([NUISettings hasFontPropertiesWithClass:className]) {
         UIFont *font = [NUISettings getFontWithClass:className];

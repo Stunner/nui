@@ -12,34 +12,34 @@
 
 + (void)render:(UISearchBar*)bar withClass:(NSString*)className
 {   
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [bar setBackgroundImage:[NUISettings getImageFromColor:@"background-color" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [bar setBackgroundImage:[NUISettings getImageFromColor:kBackgroundColor withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:className]) {
-        [bar setTintColor:[NUISettings getColor:@"background-tint-color" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
+        [bar setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"background-color-top" withClass:className]) {
+    if ([NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
         UIImage *gradientImage = [NUIGraphics
-                                          gradientImageWithTop:[NUISettings getColor:@"background-color-top" withClass:className]
-                                          bottom:[NUISettings getColor:@"background-color-bottom" withClass:className]
+                                          gradientImageWithTop:[NUISettings getColor:kBackgroundColorTop withClass:className]
+                                          bottom:[NUISettings getColor:kBackgroundColorBottom withClass:className]
                                           frame:bar.bounds];
         [bar setBackgroundImage:gradientImage];
     }
     
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-        [bar setBackgroundImage:[NUISettings getImage:@"background-image" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+        [bar setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className]];
     }
     
     // Render scope bar
     
-    if ([NUISettings hasProperty:@"scope-background-color" withClass:className]) {
-        [bar setScopeBarBackgroundImage:[NUISettings getImageFromColor:@"scope-background-color" withClass:className]];
+    if ([NUISettings hasProperty:kScopeBackgroundColor withClass:className]) {
+        [bar setScopeBarBackgroundImage:[NUISettings getImageFromColor:kScopeBackgroundColor withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"scope-background-image" withClass:className]) {
-        [bar setScopeBarBackgroundImage:[NUISettings getImage:@"scope-background-image" withClass:className]];
+    if ([NUISettings hasProperty:kScopeBackgroundImage withClass:className]) {
+        [bar setScopeBarBackgroundImage:[NUISettings getImage:kScopeBackgroundImage withClass:className]];
     }
     
     NSString *scopeBarClassName = [NSString stringWithFormat:@"SegmentedControl:%@ScopeBar", className];
@@ -54,8 +54,8 @@
         CALayer *layer = [NUIGraphics roundedRectLayerWithClass:scopeBarClassName size:bar.bounds.size];
         UIImage *normalImage = [NUIGraphics roundedRectImageWithClass:scopeBarClassName layer:layer];
         
-        if ([NUISettings hasProperty:@"background-color-selected" withClass:scopeBarClassName]) {
-            [layer setBackgroundColor:[[NUISettings getColor:@"background-color-selected" withClass:scopeBarClassName] CGColor]];
+        if ([NUISettings hasProperty:kBackgroundColorSelected withClass:scopeBarClassName]) {
+            [layer setBackgroundColor:[[NUISettings getColor:kBackgroundColorSelected withClass:scopeBarClassName] CGColor]];
         }
         UIImage *selectedImage = [NUIGraphics roundedRectImageWithClass:scopeBarClassName layer:layer];
         [bar setScopeBarButtonBackgroundImage:normalImage forState:UIControlStateNormal];

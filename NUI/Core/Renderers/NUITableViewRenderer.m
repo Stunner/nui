@@ -13,18 +13,18 @@
 + (void)render:(UITableView*)tableView withClass:(NSString*)className
 {
     // Set seperator style
-    if ([NUISettings hasProperty:@"separator-style" withClass:className]) {
-        [tableView setSeparatorStyle:[NUISettings getSeparatorStyle:@"separator-style" withClass:className]];
+    if ([NUISettings hasProperty:kSeparatorStyle withClass:className]) {
+        [tableView setSeparatorStyle:[NUISettings getSeparatorStyle:kSeparatorStyle withClass:className]];
     }
     
     // Set seperator color
-    if ([NUISettings hasProperty:@"separator-color" withClass:className]) {
-        [tableView setSeparatorColor:[NUISettings getColor:@"separator-color" withClass:className]];
+    if ([NUISettings hasProperty:kSeparatorColor withClass:className]) {
+        [tableView setSeparatorColor:[NUISettings getColor:kSeparatorColor withClass:className]];
     }
 
     // Set row height
-    if ([NUISettings hasProperty:@"row-height" withClass:className]) {
-        [tableView setRowHeight:[NUISettings getFloat:@"row-height" withClass:className]];
+    if ([NUISettings hasProperty:kRowHeight withClass:className]) {
+        [tableView setRowHeight:[NUISettings getFloat:kRowHeight withClass:className]];
     }
     
     [self renderSizeDependentProperties:tableView withClass:(NSString*)className];
@@ -38,8 +38,8 @@
 + (void)renderSizeDependentProperties:(UITableView*)tableView withClass:(NSString*)className
 {
     // Set background color
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        UIImage *colorImage = [NUISettings getImageFromColor:@"background-color" withClass:className];
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        UIImage *colorImage = [NUISettings getImageFromColor:kBackgroundColor withClass:className];
         tableView.backgroundView = [[UIImageView alloc] initWithImage:colorImage];
 
         // in iOS 7, the UITableView's backgroundView is drawn above the UIRefreshControl
@@ -48,10 +48,10 @@
     }
     
     // Set background gradient
-    if ([NUISettings hasProperty:@"background-color-top" withClass:className]) {
+    if ([NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
         UIImage *gradientImage = [NUIGraphics
-                                  gradientImageWithTop:[NUISettings getColor:@"background-color-top" withClass:className]
-                                  bottom:[NUISettings getColor:@"background-color-bottom" withClass:className]
+                                  gradientImageWithTop:[NUISettings getColor:kBackgroundColorTop withClass:className]
+                                  bottom:[NUISettings getColor:kBackgroundColorBottom withClass:className]
                                   frame:tableView.bounds];
         tableView.backgroundView = [[UIImageView alloc] initWithImage:gradientImage];
     }

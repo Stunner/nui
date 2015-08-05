@@ -6,7 +6,7 @@
 {
     NSString *property;
     
-    property = @"font-color";
+    property = kFontColor;
     if ([NUISettings hasProperty:property withClass:className]) {
         textView.textColor = [NUISettings getColor:property withClass:className];
     }
@@ -15,9 +15,9 @@
         textView.font = [NUISettings getFontWithClass:className baseFont:textView.font];
     }
 
-    property = @"padding";
+    property = kPadding;
     if ([NUISettings hasProperty:property withClass:className]) {
-        [textView setContentInset:[NUISettings getEdgeInsets:@"padding" withClass:className]];
+        [textView setContentInset:[NUISettings getEdgeInsets:property withClass:className]];
     }
 }
 

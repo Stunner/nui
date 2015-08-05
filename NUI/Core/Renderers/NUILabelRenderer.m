@@ -22,8 +22,8 @@
         className = [NSString stringWithFormat:@"%@%@", className, suffix];
     }
     
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        label.backgroundColor = [NUISettings getColor:@"background-color" withClass:className];
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        label.backgroundColor = [NUISettings getColor:kBackgroundColor withClass:className];
     } else {
         // UILabels created programmatically have a white background by default
         if (!label.backgroundColor || [label.backgroundColor isEqual:[UIColor whiteColor]]) {
@@ -31,12 +31,12 @@
         }
     }
     
-    if ([NUISettings hasProperty:@"font-color" withClass:className]) {
-        label.textColor = [NUISettings getColor:@"font-color" withClass:className];
+    if ([NUISettings hasProperty:kFontColor withClass:className]) {
+        label.textColor = [NUISettings getColor:kFontColor withClass:className];
     }
     
-    if ([NUISettings hasProperty:@"font-color-highlighted" withClass:className]) {
-        label.highlightedTextColor = [NUISettings getColor:@"font-color-highlighted" withClass:className];
+    if ([NUISettings hasProperty:kFontColorHighlighted withClass:className]) {
+        label.highlightedTextColor = [NUISettings getColor:kFontColorHighlighted withClass:className];
     }
 
     [NUIViewRenderer renderSize:label withClass:className];
@@ -53,27 +53,27 @@
         label.font = [NUISettings getFontWithClass:className baseFont:label.font];
     }
     
-    property = @"text-align";
+    property = kTextAlign;
     if ([NUISettings hasProperty:property withClass:className]) {
         label.textAlignment = [NUISettings getTextAlignment:property withClass:className];
     }
     
-    property = @"text-alpha";
+    property = kTextAlpha;
     if ([NUISettings hasProperty:property withClass:className]) {
         label.alpha = [NUISettings getFloat:property withClass:className];
     }
     
-    property = @"text-auto-fit";
+    property = kTextAutoFit;
     if ([NUISettings hasProperty:property withClass:className]) {
         [label setAdjustsFontSizeToFitWidth:[NUISettings getBoolean:property withClass:className]];
     }
     
-    property = @"text-shadow-color";
+    property = kTextShadowColor;
     if ([NUISettings hasProperty:property withClass:className]) {
         label.shadowColor = [NUISettings getColor:property withClass:className];
     }
     
-    property = @"text-shadow-offset";
+    property = kTextShadowOffset;
     if ([NUISettings hasProperty:property withClass:className]) {
         label.shadowOffset = [NUISettings getSize:property withClass:className];
     }
@@ -81,7 +81,7 @@
 
 + (BOOL)needsTextTransformWithClass:(NSString*)className
 {
-    return [NUISettings hasProperty:@"text-transform" withClass:className];
+    return [NUISettings hasProperty:kTextTransform withClass:className];
 }
 
 + (NSString *)transformText:(NSString*)text withClass:(NSString*)className
@@ -92,7 +92,7 @@
     NSString *property;
     NSString *transformedText = text;
     
-    property = @"text-transform";
+    property = kTextTransform;
     
     if ([NUISettings hasProperty:property withClass:className]) {
         NSString *transform = [NUISettings get:property withClass:className];

@@ -16,8 +16,8 @@
     
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
         [item setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    } else if ([NUISettings hasProperty:@"background-tint-color" withClass:className]) {
-        [item setTintColor:[NUISettings getColor:@"background-tint-color" withClass:className]];
+    } else if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
+        [item setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
     } else if ([NUISettings hasProperty:kBackgroundColor withClass:className] ||
                [NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
         CALayer *layer = [CALayer layer];

@@ -13,7 +13,7 @@
 + (void)render:(UIView*)view withClass:(NSString*)className
 {
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
-        if ([NUISettings hasProperty:@"background-repeat" withClass:className] && ![NUISettings getBoolean:@"background-repeat" withClass:className]) {
+        if ([NUISettings hasProperty:kBackgroundRepeat withClass:className] && ![NUISettings getBoolean:kBackgroundRepeat withClass:className]) {
             view.layer.contents = (__bridge id)[NUISettings getImage:kBackgroundImage withClass:className].CGImage;
         } else {
             [view setBackgroundColor: [NUISettings getColorFromImage:kBackgroundImage withClass:className]];
@@ -49,20 +49,20 @@
 {
     CALayer *layer = [view layer];
     
-    if ([NUISettings hasProperty:@"shadow-radius" withClass:className]) {
-        [layer setShadowRadius:[NUISettings getFloat:@"shadow-radius" withClass:className]];
+    if ([NUISettings hasProperty:kShadowRadius withClass:className]) {
+        [layer setShadowRadius:[NUISettings getFloat:kShadowRadius withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"shadow-offset" withClass:className]) {
-        [layer setShadowOffset:[NUISettings getSize:@"shadow-offset" withClass:className]];
+    if ([NUISettings hasProperty:kShadowOffset withClass:className]) {
+        [layer setShadowOffset:[NUISettings getSize:kShadowOffset withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"shadow-color" withClass:className]) {
-        [layer setShadowColor:[NUISettings getColor:@"shadow-color" withClass:className].CGColor];
+    if ([NUISettings hasProperty:kShadowColor withClass:className]) {
+        [layer setShadowColor:[NUISettings getColor:kShadowColor withClass:className].CGColor];
     }
     
-    if ([NUISettings hasProperty:@"shadow-opacity" withClass:className]) {
-        [layer setShadowOpacity:[NUISettings getFloat:@"shadow-opacity" withClass:className]];
+    if ([NUISettings hasProperty:kShadowOpacity withClass:className]) {
+        [layer setShadowOpacity:[NUISettings getFloat:kShadowOpacity withClass:className]];
     }
 }
 
@@ -86,7 +86,7 @@
 + (BOOL)hasShadowProperties:(UIView*)view withClass:(NSString*)className {
     
     BOOL hasAnyShadowProperty = NO;
-    for (NSString *property in @[@"shadow-radius", @"shadow-offset", @"shadow-color", @"shadow-opacity"]) {
+    for (NSString *property in @[kShadowRadius, kShadowOffset, kShadowColor, kShadowOpacity]) {
         hasAnyShadowProperty |= [NUISettings hasProperty:property withClass:className];
     }
     return hasAnyShadowProperty;
