@@ -9,6 +9,12 @@
 #import "NUISettings.h"
 #import "NUIAppearance.h"
 
+@interface NUISettings ()
+
+@property (nonatomic, strong) NSArray *supportedPropertiesArray;
+
+@end
+
 @implementation NUISettings
 
 @synthesize autoUpdatePath;
@@ -31,6 +37,69 @@ static NUISettings *instance = nil;
     instance.stylesheetOrientation = [self stylesheetOrientationFromInterfaceOrientation:orientation];
     NUIStyleParser *parser = [[NUIStyleParser alloc] init];
     instance.styles = [parser getStylesFromFile:name];
+    
+    NSArray *array = @[kHeight, kWidth,
+                       
+                       kVerticalAlign,
+                       
+                       kBackgroundColor, kBackgroundTintColor, kBackgroundColorHighlighted,
+                       kBackgroundColorSelected, kBackgroundColorSelectedHighlighted,
+                       kBackgroundColorSelectedDisabled, kBackgroundColorDisabled,
+                       kBackgroundColorTop, kBackgroundColorTopSelected, kBackgroundColorBottom,
+                       kBackgroundColorBottomSelected, kBackgroundRepeat,
+                       
+                       kBackgroundImage, kBackgroundImageTop, kBackgroundImageTopLandscape,
+                       kBackgroundImageBottom, kBackgroundImageBottomLandscape,
+                       kBackgroundImageHighlighted, kBackgroundImageSelected,
+                       kBackgroundImageSelectedHighlighted, kBackgroundImageSelectedDisabled,
+                       kBackgroundImageDisabled,
+                       
+                       kBarTintColor,
+                       
+                       kBorderStyle, kBorderColor, kBorderWidth,
+                       
+                       kContentInsets, kCornerRadius,
+                       
+                       kDividerColor, kDividerImage,
+                       
+                       kExcludeViews, kExcludeSubviews,
+                       
+                       kFinishedImage, kFinishedImageSelected,
+                       
+                       kFontColor, kFontColorHighlighted, kFontColorSelected, kFontColorSelectedHighlighted,
+                       kFontColorSelectedDisabled, kFontColorDisabled, kFontName, kFontSize,
+                       
+                       kImage, kImageHighlighted, kImageSelected, kImageSelectedHighlighted,
+                       kImageSelectedDisabled, kImageDisabled,
+                       
+                       kMinimumTrackTintColor, kMaximumTrackTintColor, kMinimumValueImage, kMaximumValueImage,
+                       
+                       kOffImage, kOnImage,
+                       
+                       kPadding, kProgressImage, kProgressTintColor,
+                       
+                       kRowHeight,
+                       
+                       kScopeBackgroundColor, kScopeBackgroundImage,
+                       
+                       kSelectedImage, kSelectedImageTintColor,
+                       
+                       kSeparatorColor, kSeparatorStyle,
+                       
+                       kShadowColor, kShadowImage, kShadowImageTop, kShadowImageBottom, kShadowRadius,
+                       kShadowOffset, kShadowOpacity,
+                       
+                       kTextAlign, kTextAlpha, kTextAutoFit, kTextOffset, kTextShadowColor,
+                       kTextShadowColorHighlighted, kTextShadowColorSelected,
+                       kTextShadowColorSelectedHighlighted, kTextShadowColorSelectedDisabled,
+                       kTextShadowColorDisabled, kTextShadowOffset, kTextTransform,
+                       
+                       kTintColor, kOnTintColor, kThumbTintColor, kThumbImage,
+                       
+                       kTitleInsets, kTitleVerticalOffset,
+                       
+                       kTrackImage, kTrackTintColor];
+    instance.supportedPropertiesArray = array;
     
     [NUIAppearance init];
 }
@@ -138,8 +207,21 @@ static NUISettings *instance = nil;
 
 + (BOOL)hasFontPropertiesWithClass:(NSString*)className
 {
-    return [self hasProperty:@"font-name" withClass:className] ||
-           [self hasProperty:@"font-size" withClass:className];
+    return [self hasProperty:kFontName withClass:className] ||
+           [self hasProperty:kFontSize withClass:className];
+}
+
++ (NSDictionary*)allPropertiesForClass:(NSString*)className {
+    NSMutableDictionary *ruleSet = nil;
+    NSArray *classes = [self getClasses:className];
+    for (NSString *inheritedClass in classes) {
+        if (!ruleSet) {
+            ruleSet = [[NSMutableDictionary alloc] initWithDictionary:[instance.styles objectForKey:inheritedClass]];
+        } else {
+            [ruleSet addEntriesFromDictionary:[instance.styles objectForKey:inheritedClass]];
+        }
+    }
+    return ruleSet;
 }
 
 + (id)get:(NSString*)property withExplicitClass:(NSString*)className
@@ -205,15 +287,15 @@ static NUISettings *instance = nil;
     CGFloat fontSize;
     UIFont *font = nil;
     
-    propertyName = @"font-size";
+    propertyName = kFontSize;
     
     if ([self hasProperty:propertyName withClass:className]) {
-        fontSize = [self getFloat:@"font-size" withClass:className];
+        fontSize = [self getFloat:propertyName withClass:className];
     } else {
         fontSize = baseFont ? baseFont.pointSize : [UIFont systemFontSize];
     }
     
-    propertyName = @"font-name";
+    propertyName = kFontName;
     
     if ([self hasProperty:propertyName withClass:className]) {
         NSString *fontName = [self get:propertyName withClass:className];
@@ -322,6 +404,38 @@ static NUISettings *instance = nil;
 + (NSString *)stylesheetOrientationFromInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     return UIInterfaceOrientationIsLandscape(orientation) ? @"landscape" : @"portrait";
+}
+
++ (NSDictionary *)unrecognizedPropertiesForClass:(NSString *)className
+{
+    NSSet *propertyKeys = [NSSet setWithArray:[self getInstance].supportedPropertiesArray];
+    NSDictionary *dictionary = [NUISettings allPropertiesForClass:className];
+    NSSet *receivedKeys = [NSSet setWithArray:[dictionary allKeys]];
+    NSMutableSet *unrecognizedProperties = [NSMutableSet setWithCapacity:receivedKeys.count];
+    [unrecognizedProperties setSet:receivedKeys];
+    [unrecognizedProperties minusSet:propertyKeys];
+    
+    NSMutableDictionary *returnableDictionary = [[NSMutableDictionary alloc] initWithCapacity:unrecognizedProperties.count];
+    for (NSString *property in unrecognizedProperties) {
+        [returnableDictionary setObject:[dictionary objectForKey:property] forKey:property];
+    }
+    return returnableDictionary;
+}
+
++ (void)alertObject:(id)object
+          withClass:(NSString*)className
+ofUnsupportedProperties:(NSDictionary*)properties
+          withBlock:(NUIRenderOverrideBlock)block
+{
+    for (NSString *unrecognizedPropertyKey in [properties allKeys]) {
+        NUIRenderContainer *container = [NUIRenderContainer new];
+        container.recognizedProperty = NO;
+        container.object = object;
+        container.propertyName = unrecognizedPropertyKey;
+        container.propertyValue = [properties objectForKey:unrecognizedPropertyKey];
+        container.className = className;
+        block(container);
+    }
 }
 
 + (NUISettings*)getInstance

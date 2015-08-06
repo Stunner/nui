@@ -12,23 +12,23 @@
 
 + (void)render:(UISlider*)slider withClass:(NSString*)className;
 {
-    if ([NUISettings hasProperty:@"minimum-track-tint-color" withClass:className]) {
-        [slider setMinimumTrackTintColor:[NUISettings getColor:@"minimum-track-tint-color" withClass:className]];
+    if ([NUISettings hasProperty:kMinimumTrackTintColor withClass:className]) {
+        [slider setMinimumTrackTintColor:[NUISettings getColor:kMinimumTrackTintColor withClass:className]];
     }
-    if ([NUISettings hasProperty:@"maximum-track-tint-color" withClass:className]) {
-        [slider setMaximumTrackTintColor:[NUISettings getColor:@"maximum-track-tint-color" withClass:className]];
+    if ([NUISettings hasProperty:kMaximumTrackTintColor withClass:className]) {
+        [slider setMaximumTrackTintColor:[NUISettings getColor:kMaximumTrackTintColor withClass:className]];
     }
-    if ([NUISettings hasProperty:@"minimum-value-image" withClass:className]) {
-        [slider setMinimumValueImage:[NUISettings getImage:@"minimum-value-image" withClass:className]];
+    if ([NUISettings hasProperty:kMinimumValueImage withClass:className]) {
+        [slider setMinimumValueImage:[NUISettings getImage:kMinimumValueImage withClass:className]];
     }
-    if ([NUISettings hasProperty:@"maximum-value-image" withClass:className]) {
-        [slider setMaximumValueImage:[NUISettings getImage:@"maximum-value-image" withClass:className]];
+    if ([NUISettings hasProperty:kMaximumValueImage withClass:className]) {
+        [slider setMaximumValueImage:[NUISettings getImage:kMaximumValueImage withClass:className]];
     }
-    if ([NUISettings hasProperty:@"thumb-image" withClass:className]) {
-        [slider setThumbImage:[NUISettings getImage:@"thumb-image" withClass:className] forState:UIControlStateNormal];
+    if ([NUISettings hasProperty:kThumbImage withClass:className]) {
+        [slider setThumbImage:[NUISettings getImage:kThumbImage withClass:className] forState:UIControlStateNormal];
     }
-    if ([NUISettings hasProperty:@"thumb-tint-color" withClass:className]) {
-        [slider setThumbTintColor:[NUISettings getColor:@"thumb-tint-color" withClass:className]];
+    if ([NUISettings hasProperty:kThumbTintColor withClass:className]) {
+        [slider setThumbTintColor:[NUISettings getColor:kThumbTintColor withClass:className]];
     }
 }
 

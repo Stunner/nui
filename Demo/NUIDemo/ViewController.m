@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "STAButton.h"
 #import "UIButton+NUI.h"
+#import "NSObject+NUI.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 
@@ -25,26 +26,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    __weak __typeof__(self) weakSelf = self;
-    [self.largeButton setRenderOverrideBlock:^BOOL(id color, UIControlState state) {
-        if ([weakSelf.largeButton isKindOfClass:[STAButton class]]) {
-            [(STAButton *)weakSelf.largeButton setBackgroundColor:color forState:state];
+    [self.largeButton setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
+        NSLog(@"render container: %@", container);
+        if (container.recognizedProperty && [container.object isKindOfClass:[STAButton class]]) {
+            STAButton *button = container.object;
+            [button setBackgroundColor:container.appliedProperty forState:container.state];
             return NO;
         }
         return YES;
     }];
-    [self.button setRenderOverrideBlock:^BOOL(id color, UIControlState state) {
-        if ([weakSelf.button isKindOfClass:[STAButton class]]) {
-            [(STAButton *)weakSelf.button setBackgroundColor:color forState:state];
+    [self.button setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
+        NSLog(@"render container: %@", container);
+        if (container.recognizedProperty && [container.object isKindOfClass:[STAButton class]]) {
+            STAButton *button = container.object;
+            [button setBackgroundColor:container.appliedProperty forState:container.state];
             return NO;
         }
         return YES;
     }];
-    [self.smallButton setRenderOverrideBlock:^BOOL(id color, UIControlState state) {
-//        if ([weakSelf.smallButton isKindOfClass:[STAButton class]]) {
-//            [(STAButton *)weakSelf.smallButton setBackgroundColor:color forState:state];
-//            return NO;
-//        }
+    [self.smallButton setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
+        NSLog(@"render container: %@", container);
         return YES;
     }];
 }

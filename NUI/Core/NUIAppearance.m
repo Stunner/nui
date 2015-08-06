@@ -26,26 +26,26 @@
         [[uiClass appearance] setTitleTextAttributes:titleTextAttributes forState:UIControlStateNormal];
     }
     
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:className]) {
-        [[uiClass appearance] setTintColor:[NUISettings getColor:@"background-tint-color" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
+        [[uiClass appearance] setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"background-color" withClass:className] ||
-               [NUISettings hasProperty:@"background-color-top" withClass:className]) {
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className] ||
+               [NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
         [[uiClass appearance] setBackButtonBackgroundImage:[NUIGraphics backButtonWithClass:className] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:@"background-image" withClass:className] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
-    if ([NUISettings hasProperty:@"background-image-selected" withClass:className]) {
-        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:@"background-image-selected" withClass:className] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    if ([NUISettings hasProperty:kBackgroundImageSelected withClass:className]) {
+        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:kBackgroundImageSelected withClass:className] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     }
-    if ([NUISettings hasProperty:@"background-image-highlighted" withClass:className]) {
-        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:@"background-image-highlighted" withClass:className] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    if ([NUISettings hasProperty:kBackgroundImageHighlighted withClass:className]) {
+        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:kBackgroundImageHighlighted withClass:className] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     }
-    if ([NUISettings hasProperty:@"background-image-disabled" withClass:className]) {
-        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:@"background-image-disabled" withClass:className] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
+    if ([NUISettings hasProperty:kBackgroundImageDisabled withClass:className]) {
+        [[uiClass appearance] setBackButtonBackgroundImage:[NUISettings getImage:kBackgroundImageDisabled withClass:className] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
     }
     
 }

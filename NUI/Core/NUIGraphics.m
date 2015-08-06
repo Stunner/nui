@@ -29,23 +29,23 @@
     shape.lineCap = kCALineCapRound;
     shape.lineJoin = kCALineJoinRound;
     
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        shape.fillColor = [[NUISettings getColor:@"background-color" withClass:className] CGColor];
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        shape.fillColor = [[NUISettings getColor:kBackgroundColor withClass:className] CGColor];
     }
-    if ([NUISettings hasProperty:@"background-color-top" withClass:className]) {
-        shape.fillColor = [[NUISettings getColor:@"background-color-top" withClass:className] CGColor];
-    }
-    
-    if ([NUISettings hasProperty:@"border-color" withClass:className]) {
-        shape.strokeColor = [[NUISettings getColor:@"border-color" withClass:className] CGColor];
+    if ([NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
+        shape.fillColor = [[NUISettings getColor:kBackgroundColorTop withClass:className] CGColor];
     }
     
-    if ([NUISettings hasProperty:@"border-width" withClass:className]) {
-        shape.lineWidth = [NUISettings getFloat:@"border-width" withClass:className];
+    if ([NUISettings hasProperty:kBorderColor withClass:className]) {
+        shape.strokeColor = [[NUISettings getColor:kBorderColor withClass:className] CGColor];
     }
     
-    if ([NUISettings hasProperty:@"corner-radius" withClass:className]) {
-        cornerRadius = [NUISettings getFloat:@"corner-radius" withClass:className];
+    if ([NUISettings hasProperty:kBorderWidth withClass:className]) {
+        shape.lineWidth = [NUISettings getFloat:kBorderWidth withClass:className];
+    }
+    
+    if ([NUISettings hasProperty:kCornerRadius withClass:className]) {
+        cornerRadius = [NUISettings getFloat:kCornerRadius withClass:className];
     }
     
     CGMutablePathRef path = CGPathCreateMutable();
@@ -78,20 +78,20 @@
     [layer setFrame:CGRectMake(0, 0, size.width, size.height)];
     [layer setMasksToBounds:YES];
     
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [layer setBackgroundColor:[[NUISettings getColor:@"background-color" withClass:className] CGColor]];
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [layer setBackgroundColor:[[NUISettings getColor:kBackgroundColor withClass:className] CGColor]];
     }
     
-    if ([NUISettings hasProperty:@"border-color" withClass:className]) {
-        [layer setBorderColor:[[NUISettings getColor:@"border-color" withClass:className] CGColor]];
+    if ([NUISettings hasProperty:kBorderColor withClass:className]) {
+        [layer setBorderColor:[[NUISettings getColor:kBorderColor withClass:className] CGColor]];
     }
     
-    if ([NUISettings hasProperty:@"border-width" withClass:className]) {
-        [layer setBorderWidth:[NUISettings getFloat:@"border-width" withClass:className]];
+    if ([NUISettings hasProperty:kBorderWidth withClass:className]) {
+        [layer setBorderWidth:[NUISettings getFloat:kBorderWidth withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"corner-radius" withClass:className]) {
-        [layer setCornerRadius:[NUISettings getFloat:@"corner-radius" withClass:className]];
+    if ([NUISettings hasProperty:kCornerRadius withClass:className]) {
+        [layer setCornerRadius:[NUISettings getFloat:kCornerRadius withClass:className]];
     }
     
     return layer;
@@ -105,7 +105,7 @@
 
 + (UIImage*)roundedRectImageWithClass:(NSString*)className layer:(CALayer*)layer
 {
-    float cornerRadius = [NUISettings getFloat:@"corner-radius" withClass:className];
+    float cornerRadius = [NUISettings getFloat:kCornerRadius withClass:className];
     float insetLength = cornerRadius;
     
     if (cornerRadius < 5) {

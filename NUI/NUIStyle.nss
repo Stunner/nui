@@ -40,12 +40,15 @@ Button {
     corner-radius: 7;
     exclude-views: UIAlertButton;
     exclude-subviews: UITableViewCell,UITextField;
+    daffoldil: someValue;
+    eyesBack: atMe;
 }
 LargeButton {
     background-color: lightGray;
     height: 50;
     font-size: 20;
     corner-radius: 10;
+    back : slash;
 }
 SmallButton {
     height: 24;

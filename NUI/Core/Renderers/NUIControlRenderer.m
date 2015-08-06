@@ -13,10 +13,10 @@
 
 + (void)render:(UIControl*)control withClass:(NSString*)className
 {
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-        [control setBackgroundColor: [NUISettings getColorFromImage:@"background-image" withClass: className]];
-    } else if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [control setBackgroundColor: [NUISettings getColor:@"background-color" withClass: className]];
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+        [control setBackgroundColor: [NUISettings getColorFromImage:kBackgroundImage withClass: className]];
+    } else if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [control setBackgroundColor: [NUISettings getColor:kBackgroundColor withClass: className]];
     }
     
     [NUIViewRenderer renderBorder:control withClass:className];

@@ -18,36 +18,37 @@
     }
     
     // Set font color
-    if ([NUISettings hasProperty:@"font-color" withClass:className]) {
-        [textField setTextColor:[NUISettings getColor:@"font-color" withClass:className]];
+    if ([NUISettings hasProperty:kFontColor withClass:className]) {
+        [textField setTextColor:[NUISettings getColor:kFontColor withClass:className]];
     }
     
     // Set background color
-    if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [textField setBackgroundColor:[NUISettings getColor:@"background-color" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [textField setBackgroundColor:[NUISettings getColor:kBackgroundColor withClass:className]];
     }
     
     // Set background gradient
-    if ([NUISettings hasProperty:@"background-color-top" withClass:className]) {
+    if ([NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
+        // TODO: investigate if null background color bottom property could cause issues
         UIImage *gradient = [NUIGraphics
-                             gradientImageWithTop:[NUISettings getColor:@"background-color-top" withClass:className]
-                             bottom:[NUISettings getColor:@"background-color-bottom" withClass:className]
+                             gradientImageWithTop:[NUISettings getColor:kBackgroundColorTop withClass:className]
+                             bottom:[NUISettings getColor:kBackgroundColorBottom withClass:className]
                              frame:textField.bounds];
         [textField setBackground:gradient];
     }
     
     // Set background image
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-        [textField setBackground:[NUISettings getImage:@"background-image" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+        [textField setBackground:[NUISettings getImage:kBackgroundImage withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"vertical-align" withClass:className]) {
-        [textField setContentVerticalAlignment:[NUISettings getControlContentVerticalAlignment:@"vertical-align" withClass:className]];
+    if ([NUISettings hasProperty:kVerticalAlign withClass:className]) {
+        [textField setContentVerticalAlignment:[NUISettings getControlContentVerticalAlignment:kVerticalAlign withClass:className]];
     }
 
     // Set border style
-    if ([NUISettings hasProperty:@"border-style" withClass:className]) {
-        [textField setBorderStyle:[NUISettings getBorderStyle:@"border-style" withClass:className]];
+    if ([NUISettings hasProperty:kBorderStyle withClass:className]) {
+        [textField setBorderStyle:[NUISettings getBorderStyle:kBorderStyle withClass:className]];
     }
 
     [NUIViewRenderer renderSize:textField withClass:className];

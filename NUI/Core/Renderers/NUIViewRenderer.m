@@ -12,14 +12,14 @@
 
 + (void)render:(UIView*)view withClass:(NSString*)className
 {
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-        if ([NUISettings hasProperty:@"background-repeat" withClass:className] && ![NUISettings getBoolean:@"background-repeat" withClass:className]) {
-            view.layer.contents = (__bridge id)[NUISettings getImage:@"background-image" withClass:className].CGImage;
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+        if ([NUISettings hasProperty:kBackgroundRepeat withClass:className] && ![NUISettings getBoolean:kBackgroundRepeat withClass:className]) {
+            view.layer.contents = (__bridge id)[NUISettings getImage:kBackgroundImage withClass:className].CGImage;
         } else {
-            [view setBackgroundColor: [NUISettings getColorFromImage:@"background-image" withClass: className]];
+            [view setBackgroundColor: [NUISettings getColorFromImage:kBackgroundImage withClass:className]];
         }
-    } else if ([NUISettings hasProperty:@"background-color" withClass:className]) {
-        [view setBackgroundColor: [NUISettings getColor:@"background-color" withClass: className]];
+    } else if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [view setBackgroundColor: [NUISettings getColor:kBackgroundColor withClass:className]];
     }
 
     [self renderSize:view withClass:className];
@@ -31,16 +31,16 @@
 {
     CALayer *layer = [view layer];
     
-    if ([NUISettings hasProperty:@"border-color" withClass:className]) {
-        [layer setBorderColor:[[NUISettings getColor:@"border-color" withClass:className] CGColor]];
+    if ([NUISettings hasProperty:kBorderColor withClass:className]) {
+        [layer setBorderColor:[[NUISettings getColor:kBorderColor withClass:className] CGColor]];
     }
     
-    if ([NUISettings hasProperty:@"border-width" withClass:className]) {
-        [layer setBorderWidth:[NUISettings getFloat:@"border-width" withClass:className]];
+    if ([NUISettings hasProperty:kBorderWidth withClass:className]) {
+        [layer setBorderWidth:[NUISettings getFloat:kBorderWidth withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"corner-radius" withClass:className]) {
-        [layer setCornerRadius:[NUISettings getFloat:@"corner-radius" withClass:className]];
+    if ([NUISettings hasProperty:kCornerRadius withClass:className]) {
+        [layer setCornerRadius:[NUISettings getFloat:kCornerRadius withClass:className]];
         layer.masksToBounds = YES;
     }
 }
@@ -49,33 +49,33 @@
 {
     CALayer *layer = [view layer];
     
-    if ([NUISettings hasProperty:@"shadow-radius" withClass:className]) {
-        [layer setShadowRadius:[NUISettings getFloat:@"shadow-radius" withClass:className]];
+    if ([NUISettings hasProperty:kShadowRadius withClass:className]) {
+        [layer setShadowRadius:[NUISettings getFloat:kShadowRadius withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"shadow-offset" withClass:className]) {
-        [layer setShadowOffset:[NUISettings getSize:@"shadow-offset" withClass:className]];
+    if ([NUISettings hasProperty:kShadowOffset withClass:className]) {
+        [layer setShadowOffset:[NUISettings getSize:kShadowOffset withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"shadow-color" withClass:className]) {
-        [layer setShadowColor:[NUISettings getColor:@"shadow-color" withClass:className].CGColor];
+    if ([NUISettings hasProperty:kShadowColor withClass:className]) {
+        [layer setShadowColor:[NUISettings getColor:kShadowColor withClass:className].CGColor];
     }
     
-    if ([NUISettings hasProperty:@"shadow-opacity" withClass:className]) {
-        [layer setShadowOpacity:[NUISettings getFloat:@"shadow-opacity" withClass:className]];
+    if ([NUISettings hasProperty:kShadowOpacity withClass:className]) {
+        [layer setShadowOpacity:[NUISettings getFloat:kShadowOpacity withClass:className]];
     }
 }
 
 + (void)renderSize:(UIView*)view withClass:(NSString*)className
 {
     CGFloat height = view.frame.size.height;
-    if ([NUISettings hasProperty:@"height" withClass:className]) {
-        height = [NUISettings getFloat:@"height" withClass:className];
+    if ([NUISettings hasProperty:kHeight withClass:className]) {
+        height = [NUISettings getFloat:kHeight withClass:className];
     }
     
     CGFloat width = view.frame.size.width;
-    if ([NUISettings hasProperty:@"width" withClass:className]) {
-        width = [NUISettings getFloat:@"width" withClass:className];
+    if ([NUISettings hasProperty:kWidth withClass:className]) {
+        width = [NUISettings getFloat:kWidth withClass:className];
     }
 
     if (height != view.frame.size.height || width != view.frame.size.width) {
@@ -86,7 +86,7 @@
 + (BOOL)hasShadowProperties:(UIView*)view withClass:(NSString*)className {
     
     BOOL hasAnyShadowProperty = NO;
-    for (NSString *property in @[@"shadow-radius", @"shadow-offset", @"shadow-color", @"shadow-opacity"]) {
+    for (NSString *property in @[kShadowRadius, kShadowOffset, kShadowColor, kShadowOpacity]) {
         hasAnyShadowProperty |= [NUISettings hasProperty:property withClass:className];
     }
     return hasAnyShadowProperty;

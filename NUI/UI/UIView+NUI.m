@@ -45,7 +45,7 @@
 {
     if (![value isEqualToString:kNUIClassNone]) {
         // Set class to none if view is in the exclude
-        NSMutableArray *excludeViews = [NSMutableArray arrayWithArray:[[NUISettings get:@"exclude-views" withClass:value] componentsSeparatedByString:@","]];
+        NSMutableArray *excludeViews = [NSMutableArray arrayWithArray:[[NUISettings get:kExcludeViews withClass:value] componentsSeparatedByString:@","]];
         // Add global exclusions to the list
         [excludeViews addObjectsFromArray:[NUISettings getGlobalExclusions]];
         if (excludeViews.count) {
@@ -57,7 +57,7 @@
     
     if (![value isEqualToString:kNUIClassNone]) {
         // Set class to none if any view superviews is in the exclude
-        NSMutableArray *excludeSubviews = [NSMutableArray arrayWithArray:[[NUISettings get:@"exclude-subviews" withClass:value] componentsSeparatedByString:@","]];
+        NSMutableArray *excludeSubviews = [NSMutableArray arrayWithArray:[[NUISettings get:kExcludeSubviews withClass:value] componentsSeparatedByString:@","]];
         // Add global exclusions to the list
         [excludeSubviews addObjectsFromArray:[NUISettings getGlobalExclusions]];
         if (excludeSubviews.count) {
@@ -89,14 +89,6 @@
     NSNumber *nuiAppliedFlagNumber = objc_getAssociatedObject(self, kNUIAssociatedAppliedFlagKey);
     
     return [nuiAppliedFlagNumber boolValue];
-}
-
-- (void)setRenderOverrideBlock:(BOOL (^)(id, UIControlState))renderOverrideBlock {
-    objc_setAssociatedObject(self, kNUIAssociatedRenderOverrideKey, renderOverrideBlock, OBJC_ASSOCIATION_COPY);
-}
-
-- (BOOL (^)(id, UIControlState))renderOverrideBlock {
-    return objc_getAssociatedObject(self, kNUIAssociatedRenderOverrideKey);
 }
 
 @end

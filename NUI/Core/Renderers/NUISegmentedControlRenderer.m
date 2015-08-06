@@ -15,43 +15,43 @@
 {
     [NUIViewRenderer renderSize:control withClass:className];
   
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-        if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-            [control setBackgroundImage:[NUISettings getImage:@"background-image" withClass:className] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+        if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+            [control setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         }
-        if ([NUISettings hasProperty:@"background-image-selected" withClass:className]) {
-            [control setBackgroundImage:[NUISettings getImage:@"background-image-selected" withClass:className] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+        if ([NUISettings hasProperty:kBackgroundImageSelected withClass:className]) {
+            [control setBackgroundImage:[NUISettings getImage:kBackgroundImageSelected withClass:className] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
         }
-    } else if ([NUISettings hasProperty:@"background-color" withClass:className] ||
-               [NUISettings hasProperty:@"border-color" withClass:className]) {
+    } else if ([NUISettings hasProperty:kBackgroundColor withClass:className] ||
+               [NUISettings hasProperty:kBorderColor withClass:className]) {
         CALayer *layer = [NUIGraphics roundedRectLayerWithClass:className size:control.bounds.size];
         UIImage *normalImage = [NUIGraphics roundedRectImageWithClass:className layer:layer];
         
-        if ([NUISettings hasProperty:@"background-color-selected" withClass:className]) {
-            [layer setBackgroundColor:[[NUISettings getColor:@"background-color-selected" withClass:className] CGColor]];
+        if ([NUISettings hasProperty:kBackgroundColorSelected withClass:className]) {
+            [layer setBackgroundColor:[[NUISettings getColor:kBackgroundColorSelected withClass:className] CGColor]];
         }
         UIImage *selectedImage = [NUIGraphics roundedRectImageWithClass:className layer:layer];
         [control setBackgroundImage:normalImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         [control setBackgroundImage:selectedImage forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-        if ([NUISettings hasProperty:@"border-color" withClass:className]) {
-            [control setDividerImage:[NUISettings getImageFromColor:@"border-color" withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        if ([NUISettings hasProperty:kBorderColor withClass:className]) {
+            [control setDividerImage:[NUISettings getImageFromColor:kBorderColor withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         }
     }
     
     // Set divider image or divider color
-    if ([NUISettings hasProperty:@"divider-image" withClass:className]) {
-        [control setDividerImage:[NUISettings getImage:@"divider-image" withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    } else if ([NUISettings hasProperty:@"divider-color" withClass:className]) {
-        [control setDividerImage:[NUISettings getImageFromColor:@"divider-color" withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    if ([NUISettings hasProperty:kDividerImage withClass:className]) {
+        [control setDividerImage:[NUISettings getImage:kDividerImage withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    } else if ([NUISettings hasProperty:kDividerColor withClass:className]) {
+        [control setDividerImage:[NUISettings getImageFromColor:kDividerColor withClass:className] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     }
     
     // Set background tint color
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:className]) {
+    if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
         // UISegmentedControlStyleBar is necessary for setTintColor to take effect
         control.segmentedControlStyle = UISegmentedControlStyleBar;
 #endif
-        [control setTintColor:[NUISettings getColor:@"background-tint-color" withClass:className]];
+        [control setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
     }
     
     NSDictionary *titleTextAttributes = [NUIUtilities titleTextAttributesForClass:className];

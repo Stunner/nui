@@ -12,20 +12,20 @@
 
 + (void)render:(UITabBar*)bar withClass:(NSString*)className
 {
-    if ([NUISettings hasProperty:@"background-image" withClass:className]) {
-        [bar setBackgroundImage:[NUISettings getImage:@"background-image" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+        [bar setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"background-tint-color" withClass:className]) {
-        [bar setTintColor:[NUISettings getColor:@"background-tint-color" withClass:className]];
+    if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
+        [bar setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"selected-image" withClass:className]) {
-        [bar setSelectionIndicatorImage:[NUISettings getImage:@"selected-image" withClass:className]];
+    if ([NUISettings hasProperty:kSelectedImage withClass:className]) {
+        [bar setSelectionIndicatorImage:[NUISettings getImage:kSelectedImage withClass:className]];
     }
     
-    if ([NUISettings hasProperty:@"selected-image-tint-color" withClass:className]) {
-        [bar setSelectedImageTintColor:[NUISettings getColor:@"selected-image-tint-color" withClass:className]];
+    if ([NUISettings hasProperty:kSelectedImageTintColor withClass:className]) {
+        [bar setSelectedImageTintColor:[NUISettings getColor:kSelectedImageTintColor withClass:className]];
     }
     
     [self renderSizeDependentProperties:bar];
@@ -35,8 +35,8 @@
         UITabBarItem *firstItem = [[bar items] objectAtIndex:0];
         NSArray *firstItemClasses = [firstItem.nuiClass componentsSeparatedByString: @":"];
         for (NSString *itemClass in firstItemClasses) {
-            if ([NUISettings hasProperty:@"background-image-selected" withClass:itemClass]) {
-                [bar setSelectionIndicatorImage:[NUISettings getImage:@"background-image-selected" withClass:itemClass]];
+            if ([NUISettings hasProperty:kBackgroundImageSelected withClass:itemClass]) {
+                [bar setSelectionIndicatorImage:[NUISettings getImage:kBackgroundImageSelected withClass:itemClass]];
             }
         }
     }
@@ -51,16 +51,16 @@
 {
     NSString *className = bar.nuiClass;
     
-    if ([NUISettings hasProperty:@"background-color-top" withClass:className]) {
+    if ([NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
         CGRect frame = bar.bounds;
         UIImage *gradientImage = [NUIGraphics
-                                  gradientImageWithTop:[NUISettings getColor:@"background-color-top" withClass:className]
-                                  bottom:[NUISettings getColor:@"background-color-bottom" withClass:className]
+                                  gradientImageWithTop:[NUISettings getColor:kBackgroundColorTop withClass:className]
+                                  bottom:[NUISettings getColor:kBackgroundColorBottom withClass:className]
                                   frame:frame];
         [bar setBackgroundImage:gradientImage];
-    } else if ([NUISettings hasProperty:@"background-color" withClass:className]) {
+    } else if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
         CGRect frame = bar.bounds;
-        UIImage *colorImage = [NUIGraphics colorImage:[NUISettings getColor:@"background-color" withClass:className] withFrame:frame];
+        UIImage *colorImage = [NUIGraphics colorImage:[NUISettings getColor:kBackgroundColor withClass:className] withFrame:frame];
         [bar setBackgroundImage:colorImage];
     }
 }
