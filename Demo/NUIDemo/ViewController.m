@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "STAButton.h"
 #import "UIButton+NUI.h"
+#import "NSObject+NUI.h"
 
 @interface ViewController ()<UITextFieldDelegate>
 

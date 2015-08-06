@@ -9,15 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "NUIRenderer.h"
-#import "NUIRenderContainer.h"
-
-typedef BOOL (^NUIRenderOverrideBlock)(NUIRenderContainer *renderContainer);
+//#import "NUIRenderContainer.h"
 
 @interface UIView (NUI)
 
 @property (nonatomic, retain) NSString* nuiClass;
 @property (nonatomic, assign, getter = isNUIApplied) BOOL nuiApplied;
-@property (nonatomic, copy) NUIRenderOverrideBlock renderOverrideBlock;
 
 - (void)applyNUI;
 

@@ -9,6 +9,7 @@
 #import "NUIButtonRenderer.h"
 #import "NUIViewRenderer.h"
 #import "UIButton+NUI.h"
+#import "NSObject+NUI.h"
 
 @implementation NUIButtonRenderer
 
