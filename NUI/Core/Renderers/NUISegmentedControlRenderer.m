@@ -13,6 +13,8 @@
 
 + (void)render:(UISegmentedControl*)control withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:control withClass:className];
+    
     [NUIViewRenderer renderSize:control withClass:className];
   
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {

@@ -12,6 +12,8 @@
 
 + (void)render:(UITabBar*)bar withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:bar withClass:className];
+    
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
         [bar setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className]];
     }

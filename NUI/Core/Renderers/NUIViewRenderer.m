@@ -12,6 +12,8 @@
 
 + (void)render:(UIView*)view withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:view withClass:className];
+    
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
         if ([NUISettings hasProperty:kBackgroundRepeat withClass:className] && ![NUISettings getBoolean:kBackgroundRepeat withClass:className]) {
             view.layer.contents = (__bridge id)[NUISettings getImage:kBackgroundImage withClass:className].CGImage;

@@ -4,6 +4,8 @@
 
 + (void)render:(UITextView*)textView withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:textView withClass:className];
+    
     NSString *property;
     
     property = kFontColor;

@@ -13,6 +13,8 @@
 
 + (void)render:(UIControl*)control withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:control withClass:className];
+    
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
         [control setBackgroundColor: [NUISettings getColorFromImage:kBackgroundImage withClass: className]];
     } else if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {

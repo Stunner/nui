@@ -12,6 +12,8 @@
 
 + (void)render:(UINavigationItem*)item withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:item withClass:className];
+    
     if (item.backBarButtonItem != nil) {
         [NUIRenderer renderBarButtonItem:item.backBarButtonItem];
     }

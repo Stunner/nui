@@ -8,6 +8,7 @@
 
 #import "NUISettings.h"
 #import "NUIAppearance.h"
+#import "NSObject+NUI.h"
 
 @interface NUISettings ()
 
@@ -408,7 +409,7 @@ static NUISettings *instance = nil;
     return UIInterfaceOrientationIsLandscape(orientation) ? @"landscape" : @"portrait";
 }
 
-+ (NSDictionary *)unrecognizedPropertiesForClass:(NSString *)className
++ (NSDictionary*)unrecognizedPropertiesForClass:(NSString*)className
 {
     NSSet *propertyKeys = [NSSet setWithArray:[self getInstance].supportedPropertiesArray];
     NSDictionary *dictionary = [NUISettings allPropertiesForClass:className];
@@ -437,6 +438,16 @@ ofUnsupportedProperties:(NSDictionary*)properties
         container.propertyValue = [properties objectForKey:unrecognizedPropertyKey];
         container.className = className;
         block(container);
+    }
+}
+
++ (void)checkUnsupportedPropertiesForObject:(NSObject*)object withClass:(NSString*)className {
+    NSDictionary *unrecognizedPropertyDictionary = [NUISettings unrecognizedPropertiesForClass:className];
+    if (unrecognizedPropertyDictionary.count > 0 && object.renderOverrideBlock) {
+        [NUISettings alertObject:object
+                       withClass:className
+         ofUnsupportedProperties:unrecognizedPropertyDictionary
+                       withBlock:object.renderOverrideBlock];
     }
 }
 

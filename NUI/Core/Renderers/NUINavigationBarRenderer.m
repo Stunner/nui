@@ -12,6 +12,8 @@
 
 + (void)render:(UINavigationBar*)bar withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:bar withClass:className];
+    
     if ([bar respondsToSelector:@selector(setBarTintColor:)]) {
         if ([NUISettings hasProperty:kBarTintColor withClass:className]) {
             [bar setBarTintColor:[NUISettings getColor:kBarTintColor withClass:className]];

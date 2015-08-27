@@ -15,14 +15,7 @@
 
 + (void)render:(UIButton*)button withClass:(NSString*)className
 {
-    NSDictionary *unrecognizedPropertyDictionary = [NUISettings unrecognizedPropertiesForClass:className];
-    NSLog(@"unrecognizedProperties: %@", unrecognizedPropertyDictionary);
-    if (unrecognizedPropertyDictionary.count > 0 && button.renderOverrideBlock) {
-        [NUISettings alertObject:button
-                       withClass:className
-         ofUnsupportedProperties:unrecognizedPropertyDictionary
-                       withBlock:button.renderOverrideBlock];
-    }
+    [NUISettings checkUnsupportedPropertiesForObject:button withClass:className];
     
     [NUIViewRenderer renderSize:button withClass:className];
     // UIButtonTypeRoundedRect's first two sublayers contain its background and border, which

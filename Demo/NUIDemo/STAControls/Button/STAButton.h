@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Aaron Jubbal. All rights reserved.
 //
 
+// taken from: https://github.com/Stunner/STAControls
+
 #import <UIKit/UIKit.h>
 
 @interface STAButton : UIButton

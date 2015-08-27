@@ -13,6 +13,8 @@
 
 + (void)render:(UITextField*)textField withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:textField withClass:className];
+    
     if ([NUISettings hasFontPropertiesWithClass:className]) {
         [textField setFont:[NUISettings getFontWithClass:className baseFont:textField.font]];
     }

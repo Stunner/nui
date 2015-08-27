@@ -12,6 +12,8 @@
 
 + (void)render:(UISwitch*)uiSwitch withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:uiSwitch withClass:className];
+    
     if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
         [uiSwitch setBackgroundColor:[NUISettings getColor:kBackgroundColor withClass:className]];
     }

@@ -12,6 +12,8 @@
 
 + (void)render:(UIToolbar*)bar withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:bar withClass:className];
+    
     // setBackgroundColor isn't applied correctly in all cases, so we'll use setBackgroundImage
     // instead
     if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {

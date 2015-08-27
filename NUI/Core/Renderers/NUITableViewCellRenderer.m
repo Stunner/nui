@@ -12,6 +12,8 @@
 
 + (void)render:(UITableViewCell*)cell withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:cell withClass:className];
+    
     [self renderSizeDependentProperties:cell];
     
     // Set the labels' background colors to clearColor by default, so they don't show a white
