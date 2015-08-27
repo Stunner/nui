@@ -12,6 +12,8 @@
 
 + (void)render:(UITabBarItem*)item withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:item withClass:className];
+    
     NSDictionary *titleTextAttributes = [NUIUtilities titleTextAttributesForClass:className];
 
     if ([[titleTextAttributes allKeys] count] > 0) {

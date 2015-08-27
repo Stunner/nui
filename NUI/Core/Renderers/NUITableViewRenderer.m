@@ -12,6 +12,8 @@
 
 + (void)render:(UITableView*)tableView withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:tableView withClass:className];
+    
     // Set seperator style
     if ([NUISettings hasProperty:kSeparatorStyle withClass:className]) {
         [tableView setSeparatorStyle:[NUISettings getSeparatorStyle:kSeparatorStyle withClass:className]];

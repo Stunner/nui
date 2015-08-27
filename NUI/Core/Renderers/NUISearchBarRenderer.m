@@ -11,7 +11,9 @@
 @implementation NUISearchBarRenderer
 
 + (void)render:(UISearchBar*)bar withClass:(NSString*)className
-{   
+{
+    [NUISettings checkUnsupportedPropertiesForObject:bar withClass:className];
+    
     if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
         [bar setBackgroundImage:[NUISettings getImageFromColor:kBackgroundColor withClass:className]];
     }

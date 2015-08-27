@@ -185,11 +185,13 @@ static NSString * const kTrackTintColor = @"track-tint-color";
 + (void)setGlobalExclusions:(NSArray*)globalExclusions;
 + (NSString *)stylesheetOrientation;
 
-+ (NSDictionary *)unrecognizedPropertiesForClass:(NSString *)className;
++ (NSDictionary*)unrecognizedPropertiesForClass:(NSString*)className;
 + (void)alertObject:(id)object
           withClass:(NSString*)className
 ofUnsupportedProperties:(NSDictionary*)properties
           withBlock:(NUIRenderOverrideBlock)block;
++ (void)checkUnsupportedPropertiesForObject:(NSObject*)object
+                                  withClass:(NSString*)className;
 
 @end
 

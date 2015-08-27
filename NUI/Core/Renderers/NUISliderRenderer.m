@@ -12,6 +12,8 @@
 
 + (void)render:(UISlider*)slider withClass:(NSString*)className;
 {
+    [NUISettings checkUnsupportedPropertiesForObject:slider withClass:className];
+    
     if ([NUISettings hasProperty:kMinimumTrackTintColor withClass:className]) {
         [slider setMinimumTrackTintColor:[NUISettings getColor:kMinimumTrackTintColor withClass:className]];
     }

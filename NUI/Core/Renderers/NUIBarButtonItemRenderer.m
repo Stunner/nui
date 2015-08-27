@@ -13,6 +13,7 @@
 
 + (void)render:(UIBarButtonItem*)item withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:item withClass:className];
     
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
         [item setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];

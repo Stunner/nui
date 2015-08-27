@@ -13,6 +13,8 @@
 
 + (void)render:(UILabel*)label withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:label withClass:className];
+    
     [self render:label withClass:className withSuffix:@""];
 }
 

@@ -17,6 +17,8 @@
 
 +(void)render:(UIProgressView*)progressView withClass:(NSString*)className
 {
+    [NUISettings checkUnsupportedPropertiesForObject:progressView withClass:className];
+    
     if ([NUISettings hasProperty:kProgressTintColor withClass:className]) {
         [progressView setProgressTintColor:[NUISettings getColor:kProgressTintColor withClass:className]];
     }
