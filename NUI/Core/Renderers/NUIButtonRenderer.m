@@ -102,14 +102,19 @@
                                           bottom:[NUISettings getColor:kBackgroundColorBottom withClass:className]
                                           frame:button.bounds];
         
-        if (button.gradientLayer) {
-            [button.layer replaceSublayer:button.gradientLayer with:gradientLayer];
-        } else {
-            int backgroundLayerIndex = [button.layer.sublayers count] == 1 ? 0 : 1;
-            [button.layer insertSublayer:gradientLayer atIndex:backgroundLayerIndex];
+        BOOL applyStyle = [NUISettings applyProperties:@[kBackgroundColorTop, kBackgroundColorBottom] withClass:className
+                                              onObject:button forState:UIControlStateNormal
+                                       appliedProperty:gradientLayer];
+        if (applyStyle) {
+            if (button.gradientLayer) {
+                [button.layer replaceSublayer:button.gradientLayer with:gradientLayer];
+            } else {
+                int backgroundLayerIndex = [button.layer.sublayers count] == 1 ? 0 : 1;
+                [button.layer insertSublayer:gradientLayer atIndex:backgroundLayerIndex];
+            }
+            
+            button.gradientLayer = gradientLayer;
         }
-        
-        button.gradientLayer = gradientLayer;
     }
     
     // Set background image

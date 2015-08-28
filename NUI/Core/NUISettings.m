@@ -105,6 +105,18 @@ static NUISettings *instance = nil;
     [NUIAppearance init];
 }
 
++ (NUISettings*)getInstance
+{
+    @synchronized(self) {
+        if (instance == nil) {
+            [[NUISwizzler new] swizzleAll];
+            instance = [NUISettings new];
+        }
+    }
+    
+    return instance;
+}
+
 + (void)appendStylesheet:(NSString *)name
 {
     instance = [self getInstance];
@@ -451,19 +463,23 @@ ofUnsupportedProperties:(NSDictionary*)properties
     }
 }
 
-+ (BOOL)applyProperty:(id)propertyName
-            withClass:(NSString*)className
-             onObject:(NSObject*)object
-             forState:(UIControlState)state
-      appliedProperty:(id)appliedProperty
++ (BOOL)applyProperties:(NSArray*)propertyNames
+              withClass:(NSString*)className
+               onObject:(NSObject*)object
+               forState:(UIControlState)state
+        appliedProperty:(id)appliedProperty
 {
     BOOL applyStyle = YES;
     if (object.renderOverrideBlock) {
         NUIRenderContainer *container = [NUIRenderContainer new];
         container.recognizedProperty = YES;
         container.object = object;
-        container.propertyName = propertyName;
-        container.propertyValue = [NUISettings get:propertyName withClass:className];
+        container.propertyName = propertyNames[0];
+        container.propertyValue = [NUISettings get:propertyNames[0] withClass:className];
+        if (propertyNames.count > 1) {
+            container.secondaryPropertyName = propertyNames[1];
+            container.secondaryPropertyValue = [NUISettings get:propertyNames[1] withClass:className];
+        }
         container.className = className;
         container.state = state;
         container.appliedProperty = appliedProperty;
@@ -472,16 +488,43 @@ ofUnsupportedProperties:(NSDictionary*)properties
     return applyStyle;
 }
 
-+ (NUISettings*)getInstance
++ (BOOL)applyProperty:(id)propertyName
+            withClass:(NSString*)className
+             onObject:(NSObject*)object
+             forState:(UIControlState)state
+      appliedProperty:(id)appliedProperty
 {
-    @synchronized(self) {
-        if (instance == nil) {
-            [[NUISwizzler new] swizzleAll];
-            instance = [NUISettings new];
-        }
+    return [NUISettings applyProperties:@[propertyName]
+                              withClass:className
+                               onObject:object 
+                               forState:state
+                        appliedProperty:appliedProperty];
+}
+
++ (NSDictionary *)getSpecificStyleWithClass:(NSString *)className {
+    
+    instance = [self getInstance];
+    
+    NSArray *specificStyles = [className componentsSeparatedByString:@":"];
+    NSMutableDictionary *specificNUIStyleDictionary = [[NSMutableDictionary alloc] init];
+    for (NSString *specificStyle in specificStyles) {
+        [specificNUIStyleDictionary addEntriesFromDictionary:instance.styles[specificStyle]];
+    }
+    return specificNUIStyleDictionary;
+}
+
++ (NSDictionary *)getAttributesFromSpecificClass:(NSString *)className {
+    NSDictionary *attributes;
+    NSShadow *shadow = [[NSShadow alloc]init];
+    shadow.shadowOffset = [NUISettings getSize:kTextShadowOffset withClass:className];
+    if ([NUISettings hasProperty:kTextShadowColor withClass:className]) {
+        shadow.shadowColor = [NUISettings getColor:kTextShadowColor withClass:className];
     }
     
-    return instance;
+    attributes =  @{ NSFontAttributeName:[NUISettings getFontWithClass:className],
+                     NSForegroundColorAttributeName:[NUISettings getColor:kFontColor withClass:className],
+                     NSShadowAttributeName:shadow};
+    return attributes;
 }
 
 @end

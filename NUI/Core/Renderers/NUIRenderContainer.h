@@ -14,6 +14,9 @@
 @property (nonatomic, strong) id object;
 @property (nonatomic, strong) NSString *propertyName;
 @property (nonatomic, strong) NSString *propertyValue;
+// used for properties with two keys and values, like background gradient
+@property (nonatomic, strong) NSString *secondaryPropertyName;
+@property (nonatomic, strong) NSString *secondaryPropertyValue;
 @property (nonatomic, strong) NSString *className;
 @property (nonatomic, assign) UIControlState state;
 @property (nonatomic, strong) id appliedProperty;

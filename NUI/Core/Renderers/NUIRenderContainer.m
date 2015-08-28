@@ -12,9 +12,11 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"==NUIRenderContainer:==\nrecognized property: %d\n"
-            @"object: %@\npropertyName: %@\nproperty value: %@\nclass name: %@\nstate: %lu\napplied property: %@\n"
+            @"object: %@\npropertyName: %@\nproperty value: %@\nsecondaryPropertyName: %@"
+            @"\nsecondaryProperty value: %@\nclass name: %@\nstate: %lu\napplied property: %@\n"
             "===========",
-            self.recognizedProperty, self.object, self.propertyName, self.propertyValue, self.className,
+            self.recognizedProperty, self.object, self.propertyName, self.propertyValue,
+            self.secondaryPropertyName, self.secondaryPropertyValue, self.className,
             (unsigned long)self.state, self.appliedProperty];
 }
 
