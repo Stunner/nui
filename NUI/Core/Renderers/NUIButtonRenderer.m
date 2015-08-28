@@ -114,22 +114,58 @@
     
     // Set background image
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className] forState:UIControlStateNormal];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateNormal
+                                     appliedProperty:[NUISettings getImage:kBackgroundImage withClass:className]];
+        if (applyStyle) {
+            [button setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className]
+                              forState:UIControlStateNormal];
+        }
     }
     if ([NUISettings hasProperty:kBackgroundImageHighlighted withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImage:kBackgroundImageHighlighted withClass:className] forState:UIControlStateHighlighted];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateHighlighted
+                                     appliedProperty:[NUISettings getImage:kBackgroundImageHighlighted withClass:className]];
+        if (applyStyle) {
+            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageHighlighted withClass:className]
+                              forState:UIControlStateHighlighted];
+        }
     }
     if ([NUISettings hasProperty:kBackgroundImageSelected withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelected withClass:className] forState:UIControlStateSelected];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected
+                                     appliedProperty:[NUISettings getImage:kBackgroundImageSelected withClass:className]];
+        if (applyStyle) {
+            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelected withClass:className]
+                              forState:UIControlStateSelected];
+        }
     }
     if ([NUISettings hasProperty:kBackgroundImageSelectedHighlighted withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelectedHighlighted withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateHighlighted
+                                     appliedProperty:[NUISettings getImage:kBackgroundImageSelectedHighlighted withClass:className]];
+        if (applyStyle) {
+            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelectedHighlighted withClass:className]
+                              forState:UIControlStateSelected|UIControlStateHighlighted];
+        }
     }
     if ([NUISettings hasProperty:kBackgroundImageSelectedDisabled withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelectedDisabled withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateDisabled
+                                     appliedProperty:[NUISettings getImage:kBackgroundImageSelectedDisabled withClass:className]];
+        if (applyStyle) {
+            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelectedDisabled withClass:className]
+                              forState:UIControlStateSelected|UIControlStateDisabled];
+        }
     }
     if ([NUISettings hasProperty:kBackgroundImageDisabled withClass:className]) {
-        [button setBackgroundImage:[NUISettings getImage:kBackgroundImageDisabled withClass:className] forState:UIControlStateDisabled];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateDisabled
+                                     appliedProperty:[NUISettings getImage:kBackgroundImageDisabled withClass:className]];
+        if (applyStyle) {
+            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageDisabled withClass:className]
+                              forState:UIControlStateDisabled];
+        }
     }
     
     // Set image
