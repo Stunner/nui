@@ -36,9 +36,9 @@
     // Set background color
     NSString *propertyName = kBackgroundColor;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        BOOL applyStyle = [NUIButtonRenderer applyProperty:propertyName withClass:className
-                                                  onButton:button forState:UIControlStateNormal
-                                           appliedProperty:[NUISettings getColor:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateNormal
+                                     appliedProperty:[NUISettings getColor:propertyName withClass:className]];
         if (applyStyle) {
             [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]
                               forState:UIControlStateNormal];
@@ -46,9 +46,9 @@
     }
     propertyName = kBackgroundColorHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        BOOL applyStyle = [NUIButtonRenderer applyProperty:propertyName withClass:className
-                                                  onButton:button forState:UIControlStateHighlighted
-                                           appliedProperty:[NUISettings getColor:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateHighlighted
+                                     appliedProperty:[NUISettings getColor:propertyName withClass:className]];
         if (applyStyle) {
             [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]
                               forState:UIControlStateHighlighted];
@@ -56,9 +56,9 @@
     }
     propertyName = kBackgroundColorSelected;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        BOOL applyStyle = [NUIButtonRenderer applyProperty:propertyName withClass:className
-                                                  onButton:button forState:UIControlStateSelected
-                                           appliedProperty:[NUISettings getColor:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected
+                                     appliedProperty:[NUISettings getColor:propertyName withClass:className]];
         if (applyStyle) {
             [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]
                               forState:UIControlStateSelected];
@@ -66,9 +66,9 @@
     }
     propertyName = kBackgroundColorSelectedHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        BOOL applyStyle = [NUIButtonRenderer applyProperty:propertyName withClass:className
-                                                  onButton:button forState:UIControlStateSelected|UIControlStateHighlighted
-                                           appliedProperty:[NUISettings getColor:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateHighlighted
+                                     appliedProperty:[NUISettings getColor:propertyName withClass:className]];
         if (applyStyle) {
             [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]
                               forState:UIControlStateSelected|UIControlStateHighlighted];
@@ -76,9 +76,9 @@
     }
     propertyName = kBackgroundColorSelectedDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        BOOL applyStyle = [NUIButtonRenderer applyProperty:propertyName withClass:className
-                                                  onButton:button forState:UIControlStateSelected|UIControlStateDisabled
-                                           appliedProperty:[NUISettings getColor:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateDisabled
+                                     appliedProperty:[NUISettings getColor:propertyName withClass:className]];
         if (applyStyle) {
             [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]
                               forState:UIControlStateSelected|UIControlStateDisabled];
@@ -86,9 +86,9 @@
     }
     propertyName = kBackgroundColorDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        BOOL applyStyle = [NUIButtonRenderer applyProperty:propertyName withClass:className
-                                                  onButton:button forState:UIControlStateDisabled
-                                           appliedProperty:[NUISettings getColor:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateDisabled
+                                     appliedProperty:[NUISettings getColor:propertyName withClass:className]];
         if (applyStyle) {
             [button setBackgroundImage:[NUISettings getImageFromColor:propertyName withClass:className]
                               forState:UIControlStateDisabled];
@@ -259,31 +259,6 @@
     [unrecognizedProperties setSet:receivedKeys];
     [unrecognizedProperties minusSet:propertyKeys];
     return unrecognizedProperties;
-}
-
-/////////////////////
-// PRIVATE METHODS //
-/////////////////////
-
-+ (BOOL)applyProperty:(id)propertyName
-            withClass:(NSString*)className
-             onButton:(UIButton*)button
-             forState:(UIControlState)state
-      appliedProperty:(id)appliedProperty
-{
-    BOOL applyStyle = YES;
-    if (button.renderOverrideBlock) {
-        NUIRenderContainer *container = [NUIRenderContainer new];
-        container.recognizedProperty = YES;
-        container.object = button;
-        container.propertyName = propertyName;
-        container.propertyValue = [NUISettings get:propertyName withClass:className];
-        container.className = className;
-        container.state = state;
-        container.appliedProperty = appliedProperty;
-        applyStyle = button.renderOverrideBlock(container);
-    }
-    return applyStyle;
 }
 
 @end
