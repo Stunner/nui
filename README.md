@@ -617,7 +617,7 @@ Style Value Types
 
 ## Custom Style Properties
 
-You may find the need to specify some styling properties that are specific to the appearance of your app but are not appropriate to be added to NUI. In this case, you can custom properties in the stylesheet like so:
+You may find the need to specify some styling properties that are specific to the appearance of your app but are not appropriate to be added to NUI. In this case, you can specify custom properties in the stylesheet like so:
 
 ```
 //...
@@ -642,7 +642,8 @@ And in code in the `viewDidLoad` method of the class you are working in (or some
             }
             return NO; // return NO to tell NUI that it should not try to style the object
         }
-        return YES; // return YES to tell NUI that it should try to style the object
+        return YES; // return YES to tell NUI that it should try to style the object, in the case of an unrecognized property, 
+                    // NUI won't be able to style anything
     }];
 ```
 
@@ -661,7 +662,7 @@ Similar to the section above, you may find yourself in a situation in which you 
     }];
 ```
 
-*Note:* This is currently a work in progress, it has started being implemented for UIButton.
+**Note:** This is currently a work in progress, it has started being implemented for UIButton.
 
 FAQ
 ---
