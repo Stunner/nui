@@ -472,25 +472,42 @@ ofUnsupportedProperties:(NSDictionary*)properties
     }
 }
 
-+ (BOOL)applyProperty:(id)propertyName
-            withClass:(NSString*)className
-             onObject:(NSObject*)object
-             forState:(UIControlState)state
-      appliedProperty:(id)appliedProperty
++ (BOOL)applyProperties:(NSArray*)propertyNames
+              withClass:(NSString*)className
+               onObject:(NSObject*)object
+               forState:(UIControlState)state
+        appliedProperty:(id)appliedProperty
 {
     BOOL applyStyle = YES;
     if (object.renderOverrideBlock) {
         NUIRenderContainer *container = [NUIRenderContainer new];
         container.recognizedProperty = YES;
         container.object = object;
-        container.propertyName = propertyName;
-        container.propertyValue = [NUISettings get:propertyName withClass:className];
+        container.propertyName = propertyNames[0];
+        container.propertyValue = [NUISettings get:propertyNames[0] withClass:className];
+        if (propertyNames.count > 1) {
+            container.secondaryPropertyName = propertyNames[1];
+            container.secondaryPropertyValue = [NUISettings get:propertyNames[1] withClass:className];
+        }
         container.className = className;
         container.state = state;
         container.appliedProperty = appliedProperty;
         applyStyle = object.renderOverrideBlock(container);
     }
     return applyStyle;
+}
+
++ (BOOL)applyProperty:(id)propertyName
+            withClass:(NSString*)className
+             onObject:(NSObject*)object
+             forState:(UIControlState)state
+      appliedProperty:(id)appliedProperty
+{
+    return [NUISettings applyProperties:@[propertyName]
+                              withClass:className
+                               onObject:object 
+                               forState:state
+                        appliedProperty:appliedProperty];
 }
 
 + (NSDictionary *)getSpecificStyleWithClass:(NSString *)className {
