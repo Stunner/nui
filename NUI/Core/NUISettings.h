@@ -192,6 +192,11 @@ ofUnsupportedProperties:(NSDictionary*)properties
           withBlock:(NUIRenderOverrideBlock)block;
 + (void)checkUnsupportedPropertiesForObject:(NSObject*)object
                                   withClass:(NSString*)className;
++ (BOOL)applyProperty:(id)propertyName
+            withClass:(NSString*)className
+             onObject:(NSObject*)object
+             forState:(UIControlState)state
+      appliedProperty:(id)appliedProperty;
 
 @end
 

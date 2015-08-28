@@ -449,6 +449,27 @@ ofUnsupportedProperties:(NSDictionary*)properties
     }
 }
 
++ (BOOL)applyProperty:(id)propertyName
+            withClass:(NSString*)className
+             onObject:(NSObject*)object
+             forState:(UIControlState)state
+      appliedProperty:(id)appliedProperty
+{
+    BOOL applyStyle = YES;
+    if (object.renderOverrideBlock) {
+        NUIRenderContainer *container = [NUIRenderContainer new];
+        container.recognizedProperty = YES;
+        container.object = object;
+        container.propertyName = propertyName;
+        container.propertyValue = [NUISettings get:propertyName withClass:className];
+        container.className = className;
+        container.state = state;
+        container.appliedProperty = appliedProperty;
+        applyStyle = object.renderOverrideBlock(container);
+    }
+    return applyStyle;
+}
+
 + (NUISettings*)getInstance
 {
     @synchronized(self) {
