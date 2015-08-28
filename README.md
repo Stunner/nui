@@ -615,6 +615,54 @@ Style Value Types
 * **TextTransform** - A text transform (e.g. `uppercase`, `lowercase`, `capitalize`, `none`)
 * **VerticalAlign** - A vertical alignment (e.g. `top`, `center`, `bottom`, `fill`)
 
+## Custom Style Properties
+
+You may find the need to specify some styling properties that are specific to the appearance of your app but are not appropriate to be added to NUI. In this case, you can custom properties in the stylesheet like so:
+
+```
+//...
+textfield-underline-color: black;
+textfield-underline-width: 2.0;
+//...
+```
+
+And in code in the `viewDidLoad` method of the class you are working in (or someplace similar), you can set the `renderOverride` block, which is called when unrecognized properties are encountered for the respective `nuiClass` value. For example:
+
+```
+// self.textField is an instance of UnderlineTextField
+[self.textField setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
+        if (!container.recognizedProperty && 
+            [container.object isKindOfClass:[UnderlineTextField class]]) 
+        {
+            UnderlineTextField *textField = container.object;
+            if ([container.propertyName isEqualToString:@"textfield-underline-color"]) {
+                [textField setUnderlineColor:container.appliedProperty // appliedProperty is NUI's interpretation of the value specified
+                                                                       // in the style sheet, in this example it is [UIColor black]
+                                    forState:container.state];
+            }
+            return NO; // return NO to tell NUI that it should not try to style the object
+        }
+        return YES; // return YES to tell NUI that it should try to style the object
+    }];
+```
+
+## Overriding Properties (_work in progress_)
+
+Similar to the section above, you may find yourself in a situation in which you have a custom control and would like to have control over how a style is executed for a particular object. Let's use a real world example in this case and go with a UIButton subclass, [STAButton](https://github.com/Stunner/STAControls/blob/master/STAControls/STAControls/Button/STAButton.h) which provides a `setBackgroundColor:forState:` method. In this example, we want to use the button's method instead of having NUI setting state colors via an image tint hack (the difference between the two can be seen in the highlight colors for the buttons in the sample app):
+
+```
+[self.button setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
+        if (container.recognizedProperty && [container.object isKindOfClass:[STAButton class]]) {
+            STAButton *button = container.object;
+            [button setBackgroundColor:container.appliedProperty forState:container.state];
+            return NO;
+        }
+        return YES;
+    }];
+```
+
+*Note:* This is currently a work in progress, it has started being implemented for UIButton.
+
 FAQ
 ---
 
