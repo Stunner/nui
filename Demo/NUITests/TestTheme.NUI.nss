@@ -50,7 +50,6 @@ Button {
     font-name: Avenir;
     font-size: 16;
     height: 37;
-    padding: 5;
     shadow-color: black;
     shadow-offset: 1, 2;
     shadow-opacity: 0.5;

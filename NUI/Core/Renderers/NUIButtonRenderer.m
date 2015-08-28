@@ -27,11 +27,6 @@
             [button.layer.sublayers[1] setOpacity:0.0f];
         }
     }
-
-    // Set padding
-    if ([NUISettings hasProperty:kPadding withClass:className]) {
-        [button setTitleEdgeInsets:[NUISettings getEdgeInsets:kPadding withClass:className]];
-    }
     
     // Set background color
     NSString *propertyName = kBackgroundColor;
@@ -245,7 +240,7 @@
         [button setContentEdgeInsets:[NUISettings getEdgeInsets:kContentInsets withClass:className]];
     }
     
-    [NUIViewRenderer renderBorder:button withClass:className];
+    [NUIViewRenderer renderBorderAndCorner:button withClass:className];
     
     // If a shadow-* is configured and corner-radius is set disable mask to bounds and fall back to manually applying corner radius to all sub-views (except the label)
     if ([NUIViewRenderer hasShadowProperties:button withClass:className] &&

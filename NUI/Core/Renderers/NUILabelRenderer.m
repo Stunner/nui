@@ -42,7 +42,7 @@
     }
 
     [NUIViewRenderer renderSize:label withClass:className];
-    [NUIViewRenderer renderBorder:label withClass:className];
+    [NUIViewRenderer renderBorderAndCorner:label withClass:className];
     [NUIViewRenderer renderShadow:label withClass:className];
     [self renderText:label withClass:className];
 }

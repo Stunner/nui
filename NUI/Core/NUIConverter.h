@@ -27,6 +27,8 @@
 + (CGSize)toSize:(NSString*)value;
 + (UIOffset)toOffset:(NSString*)value;
 + (UIEdgeInsets)toEdgeInsets:(NSString*)value;
++ (UIRectEdge)toRectEdge:(NSString *)value;
++ (UIRectCorner)toRectCorner:(NSString *)value;
 + (UITextBorderStyle)toBorderStyle:(NSString*)value;
 + (UITableViewCellSeparatorStyle)toSeparatorStyle:(NSString*)value;
 + (UIColor*)toColor:(NSString*)value;

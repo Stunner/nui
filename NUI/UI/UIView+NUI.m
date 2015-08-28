@@ -33,6 +33,11 @@
     self.nuiApplied = YES;
 }
 
+- (void)appendClass:(NSString *)nuiClass {
+    
+    self.nuiClass = [NSString stringWithFormat:@"%@:%@", self.nuiClass, nuiClass];
+}
+
 - (void)override_didMoveToWindow
 {
     if (!self.isNUIApplied) {
@@ -54,7 +59,7 @@
             }
         }
     }
-    
+
     if (![value isEqualToString:kNUIClassNone]) {
         // Set class to none if any view superviews is in the exclude
         NSMutableArray *excludeSubviews = [NSMutableArray arrayWithArray:[[NUISettings get:kExcludeSubviews withClass:value] componentsSeparatedByString:@","]];
@@ -71,7 +76,7 @@
             }
         }
     }
-    
+
     objc_setAssociatedObject(self, kNUIAssociatedClassKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -80,14 +85,14 @@
 }
 
 - (void)setNuiApplied:(BOOL)value {
-    
+
     objc_setAssociatedObject(self, kNUIAssociatedAppliedFlagKey, [NSNumber numberWithBool:value], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 }
 
 - (BOOL)isNUIApplied {
     NSNumber *nuiAppliedFlagNumber = objc_getAssociatedObject(self, kNUIAssociatedAppliedFlagKey);
-    
+
     return [nuiAppliedFlagNumber boolValue];
 }
 

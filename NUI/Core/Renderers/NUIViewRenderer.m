@@ -7,6 +7,7 @@
 //
 
 #import "NUIViewRenderer.h"
+#import "NUILayerRenderer.h"
 
 @implementation NUIViewRenderer
 
@@ -24,27 +25,91 @@
         [view setBackgroundColor: [NUISettings getColor:kBackgroundColor withClass:className]];
     }
 
+    if ([NUISettings hasProperty:@"tint-color" withClass:className]) {
+        [view setTintColor:[NUISettings getColor:@"tint-color" withClass:className]];
+    }
+    
     [self renderSize:view withClass:className];
-    [self renderBorder:view withClass:className];
+    [self renderBorderAndCorner:view withClass:className];
     [self renderShadow:view withClass:className];
 }
 
-+ (void)renderBorder:(UIView*)view withClass:(NSString*)className
++ (void)renderBorderAndCorner:(UIView*)view withClass:(NSString*)className
 {
     CALayer *layer = [view layer];
+
+    if ([NUISettings hasProperty:@"borders" withClass:className]) {
+        
+        [NUILayerRenderer renderLayer:layer withClass:className];
+        // Set the view backgroundColor to clearColor because the color has been transferred to the Layer
+        [view setBackgroundColor:[UIColor clearColor]];
+    } else {
+        if ([NUISettings hasProperty:kBorderColor withClass:className]) {
+            [layer setBorderColor:[[NUISettings getColor:kBorderColor withClass:className] CGColor]];
+        }
     
-    if ([NUISettings hasProperty:kBorderColor withClass:className]) {
-        [layer setBorderColor:[[NUISettings getColor:kBorderColor withClass:className] CGColor]];
+        if ([NUISettings hasProperty:kBorderWidth withClass:className]) {
+            [layer setBorderWidth:[NUISettings getFloat:kBorderWidth withClass:className]];
+        }
+        
+        if ([NUISettings hasProperty:@"corners" withClass:className]) {
+            UIEdgeInsets corners = [NUISettings getEdgeInsets:@"corners" withClass:className];
+            float cornerRadius = [self calculateCornerRadius:corners withClass:className];
+            [self renderRoundCorners:view onTopLeft:corners.top > 0 topRight:corners.right > 0 bottomLeft:corners.left > 0 bottomRight:corners.bottom > 0 radius:cornerRadius];
+        } else {
+            if ([NUISettings hasProperty:kCornerRadius withClass:className]) {
+                [layer setCornerRadius:[NUISettings getFloat:kCornerRadius withClass:className]];
+                layer.masksToBounds = YES;
+            }
+        }
     }
-    
-    if ([NUISettings hasProperty:kBorderWidth withClass:className]) {
-        [layer setBorderWidth:[NUISettings getFloat:kBorderWidth withClass:className]];
+}
+
++ (void)renderRoundCorners:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius {
+
+    if (tl || tr || bl || br) {
+        UIRectCorner corner = 0; //holds the corner
+        //Determine which corner(s) should be changed
+        if (tl) {
+            corner = corner | UIRectCornerTopLeft;
+        }
+        if (tr) {
+            corner = corner | UIRectCornerTopRight;
+        }
+        if (bl) {
+            corner = corner | UIRectCornerBottomLeft;
+        }
+        if (br) {
+            corner = corner | UIRectCornerBottomRight;
+        }
+
+        UIView *roundedView = view;
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:roundedView.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, radius)];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = roundedView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        roundedView.layer.mask = maskLayer;
+
+        CAShapeLayer *frameLayer = [CAShapeLayer layer];
+        frameLayer.frame = roundedView.bounds;
+        frameLayer.path = maskPath.CGPath;
+        frameLayer.strokeColor = roundedView.layer.borderColor;
+        frameLayer.lineWidth = roundedView.layer.borderWidth*2;
+        frameLayer.fillColor = nil;
+
+        [view.layer addSublayer:frameLayer];
     }
-    
+}
+
++ (float)calculateCornerRadius:(UIEdgeInsets)corners withClass:(NSString *)className {
+
     if ([NUISettings hasProperty:kCornerRadius withClass:className]) {
-        [layer setCornerRadius:[NUISettings getFloat:kCornerRadius withClass:className]];
-        layer.masksToBounds = YES;
+        return [NUISettings getFloat:kCornerRadius withClass:className];
     }
+
+    NSArray *cornersArray = @[@(corners.top), @(corners.left), @(corners.right), @(corners.bottom)];
+
+    return [[cornersArray valueForKeyPath:@"@max.self"] floatValue];
 }
 
 + (void)renderShadow:(UIView*)view withClass:(NSString*)className
@@ -74,7 +139,7 @@
     if ([NUISettings hasProperty:kHeight withClass:className]) {
         height = [NUISettings getFloat:kHeight withClass:className];
     }
-    
+
     CGFloat width = view.frame.size.width;
     if ([NUISettings hasProperty:kWidth withClass:className]) {
         width = [NUISettings getFloat:kWidth withClass:className];
@@ -86,7 +151,7 @@
 }
 
 + (BOOL)hasShadowProperties:(UIView*)view withClass:(NSString*)className {
-    
+
     BOOL hasAnyShadowProperty = NO;
     for (NSString *property in @[kShadowRadius, kShadowOffset, kShadowColor, kShadowOpacity]) {
         hasAnyShadowProperty |= [NUISettings hasProperty:property withClass:className];

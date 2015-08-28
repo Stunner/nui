@@ -27,9 +27,10 @@
     [self swizzleDidMoveToWindow:[UITextField class]];
     [self swizzleDidMoveToWindow:[UITextView class]];
     [self swizzleDidMoveToWindow:[UIToolbar class]];
+    [self swizzleDidMoveToWindow:[UIImageView class]];
     [self swizzleDidMoveToWindow:[UIControl class]];
     [self swizzleDidMoveToWindow:[UIView class]];
-  
+    
     [self swizzle:[UITextField class] methodName:@"textRectForBounds:"];
     [self swizzle:[UITextField class] methodName:@"editingRectForBounds:"];
     [self swizzle:[UIWindow class] methodName:@"becomeKeyWindow"];
@@ -73,6 +74,15 @@
     } else {
         method_exchangeImplementations(originalMethod, newMethod);
     }
+}
+- (BOOL)wasSwizzledMoveToWindow:(Class)class
+{
+    return [self wasSwizzled:class methodName:@"didMoveToWindow"];
+}
+
+- (BOOL)wasSwizzled:(Class)class methodName:(NSString *)methodName
+{
+    return [class instancesRespondToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@%@", @"override_", methodName])];
 }
 
 @end

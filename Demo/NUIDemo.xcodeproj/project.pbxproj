@@ -49,6 +49,8 @@
 		0EE34299193A116700306AC7 /* NUIControlRendererTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE34298193A116700306AC7 /* NUIControlRendererTests.m */; };
 		0EE9CA7C191EC96D00C84934 /* TestTheme.NUI.nss in Resources */ = {isa = PBXBuildFile; fileRef = 0EE9CA7B191EC96D00C84934 /* TestTheme.NUI.nss */; };
 		0EE9CA7D191ECA0F00C84934 /* TestTheme.NUI.nss in Resources */ = {isa = PBXBuildFile; fileRef = 0EE9CA7B191EC96D00C84934 /* TestTheme.NUI.nss */; };
+		2273AB8B1B308D51003CC30F /* NUILayerRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273AB8A1B308D51003CC30F /* NUILayerRenderer.m */; };
+		2273AB8D1B308D65003CC30F /* NUICALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2273AB8C1B308D65003CC30F /* NUICALayer.m */; };
 		3830C7C440594F829971E4C2 /* libPods-NUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC7736AC8944034A5E10550 /* libPods-NUITests.a */; };
 		41A0DE98FD464C508748F886 /* libPods-NUIDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B8BB2BB5E6412588AE14FA /* libPods-NUIDemo.a */; };
 		4A0B8636165EE59A005B5756 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0B8635165EE59A005B5756 /* UIKit.framework */; };
@@ -116,6 +118,8 @@
 		9343A0691B72DD1E0030CB8B /* NSObject+NUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9343A0681B72DD1E0030CB8B /* NSObject+NUI.m */; };
 		9344BECD1B50B28F0068F2C6 /* STAButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9344BEA71B50B28F0068F2C6 /* STAButton.m */; };
 		9344BEE71B6321680068F2C6 /* NUIRenderContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9344BEE61B6321680068F2C6 /* NUIRenderContainer.m */; };
+		9D96826C1B8F3EAA007E14DC /* NUIImageViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D96826B1B8F3EAA007E14DC /* NUIImageViewRenderer.m */; };
+		9D96826F1B8F3F07007E14DC /* NUIBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D96826E1B8F3F07007E14DC /* NUIBorderedView.m */; };
 		B51BC28A169724A3004A38F8 /* UISwitch+NUI.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BC289169724A3004A38F8 /* UISwitch+NUI.m */; };
 		B51BC28E16972527004A38F8 /* NUISwitchRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BC28D16972527004A38F8 /* NUISwitchRenderer.m */; };
 		CB8A031017CC1F7C0065A7DD /* NUITextViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8A030F17CC1F7C0065A7DD /* NUITextViewRenderer.m */; };
@@ -190,6 +194,10 @@
 		0EE34298193A116700306AC7 /* NUIControlRendererTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIControlRendererTests.m; sourceTree = "<group>"; };
 		0EE9CA7B191EC96D00C84934 /* TestTheme.NUI.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestTheme.NUI.nss; sourceTree = "<group>"; };
 		10247A6F88F5B8F6DD945FDC /* Pods-NUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUITests/Pods-NUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2273AB891B308D51003CC30F /* NUILayerRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUILayerRenderer.h; sourceTree = "<group>"; };
+		2273AB8A1B308D51003CC30F /* NUILayerRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUILayerRenderer.m; sourceTree = "<group>"; };
+		2273AB8C1B308D65003CC30F /* NUICALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUICALayer.m; sourceTree = "<group>"; };
+		2273AB8E1B308D73003CC30F /* NUICALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NUICALayer.h; sourceTree = "<group>"; };
 		3AE80CFA17E0EB290065FB3D /* NUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUIConstants.h; sourceTree = "<group>"; };
 		4A0B8631165EE59A005B5756 /* NUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A0B8635165EE59A005B5756 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -257,11 +265,13 @@
 		4ADA71C916A103CD00BDCF81 /* NUISearchBarRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUISearchBarRenderer.m; sourceTree = "<group>"; };
 		5B5888C21992BD15005F1ACB /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		5B5888C51992BDA7005F1ACB /* NUIButtonRendererSubdirectoryImageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIButtonRendererSubdirectoryImageTests.m; sourceTree = "<group>"; };
+		71F56E184DA64EE4FC9E845D /* Pods-NUIDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUIDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUIDemo/Pods-NUIDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7CC7736AC8944034A5E10550 /* libPods-NUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E47584CFA82D102F4CF8403 /* Pods-NUIDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUIDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUIDemo/Pods-NUIDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		80BCEC893B06B22A2DCBFF2D /* Pods-NUIDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUIDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-NUIDemo/Pods-NUIDemo.release.xcconfig"; sourceTree = "<group>"; };
 		832B9C1A176AEADA0054F06E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "en.lproj/iPad Storyboard.storyboard"; sourceTree = "<group>"; };
 		832B9C1D176AEAED0054F06E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "en.lproj/iPhone Storyboard.storyboard"; sourceTree = "<group>"; };
+		868BCAD9DB2CDAB97ACF058B /* Pods-NUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUITests/Pods-NUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		89B940231671418100850A9A /* NUIAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUIAppearance.h; sourceTree = "<group>"; };
 		89B940241671418100850A9A /* NUIAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIAppearance.m; sourceTree = "<group>"; };
 		89B940251671418100850A9A /* NUIConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUIConverter.h; sourceTree = "<group>"; };
@@ -305,6 +315,11 @@
 		9344BEE51B6321680068F2C6 /* NUIRenderContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUIRenderContainer.h; sourceTree = "<group>"; };
 		9344BEE61B6321680068F2C6 /* NUIRenderContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIRenderContainer.m; sourceTree = "<group>"; };
 		ACFC6B92EC5E8B0C53E165BB /* Pods-NUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUITests/Pods-NUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D96826A1B8F3EAA007E14DC /* NUIImageViewRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUIImageViewRenderer.h; sourceTree = "<group>"; };
+		9D96826B1B8F3EAA007E14DC /* NUIImageViewRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIImageViewRenderer.m; sourceTree = "<group>"; };
+		9D96826D1B8F3F07007E14DC /* NUIBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUIBorderedView.h; sourceTree = "<group>"; };
+		9D96826E1B8F3F07007E14DC /* NUIBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIBorderedView.m; sourceTree = "<group>"; };
+		B3FB15CEBB7B3A82815A48A7 /* Pods-NUIDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NUIDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NUIDemo/Pods-NUIDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B51BC288169724A3004A38F8 /* UISwitch+NUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISwitch+NUI.h"; sourceTree = "<group>"; };
 		B51BC289169724A3004A38F8 /* UISwitch+NUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+NUI.m"; sourceTree = "<group>"; };
 		B51BC28C16972527004A38F8 /* NUISwitchRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUISwitchRenderer.h; sourceTree = "<group>"; };
@@ -361,7 +376,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E8A86C318EC08970027F275 /* XCTest.framework in Frameworks */,
 				0E8A86B318EC07C40027F275 /* UIKit.framework in Frameworks */,
 				0E8A86B218EC07C40027F275 /* Foundation.framework in Frameworks */,
 				3830C7C440594F829971E4C2 /* libPods-NUITests.a in Frameworks */,
@@ -648,6 +662,8 @@
 			children = (
 				89B940231671418100850A9A /* NUIAppearance.h */,
 				89B940241671418100850A9A /* NUIAppearance.m */,
+				9D96826D1B8F3F07007E14DC /* NUIBorderedView.h */,
+				9D96826E1B8F3F07007E14DC /* NUIBorderedView.m */,
 				89B940251671418100850A9A /* NUIConverter.h */,
 				89B940261671418100850A9A /* NUIConverter.m */,
 				4A744B171699044F0068F3CF /* NUIFileMonitor.h */,
@@ -665,6 +681,8 @@
 				89B9402F1671418100850A9A /* NUIUtilities.h */,
 				89B940301671418100850A9A /* NUIUtilities.m */,
 				3AE80CFA17E0EB290065FB3D /* NUIConstants.h */,
+				2273AB8E1B308D73003CC30F /* NUICALayer.h */,
+				2273AB8C1B308D65003CC30F /* NUICALayer.m */,
 				EAB69CA91885E1AE00358420 /* Parser */,
 				89B940311671418100850A9A /* Renderers */,
 			);
@@ -674,6 +692,8 @@
 		89B940311671418100850A9A /* Renderers */ = {
 			isa = PBXGroup;
 			children = (
+				9D96826A1B8F3EAA007E14DC /* NUIImageViewRenderer.h */,
+				9D96826B1B8F3EAA007E14DC /* NUIImageViewRenderer.m */,
 				89B940321671418100850A9A /* NUIBarButtonItemRenderer.h */,
 				89B940331671418100850A9A /* NUIBarButtonItemRenderer.m */,
 				89B940341671418100850A9A /* NUIButtonRenderer.h */,
@@ -682,6 +702,8 @@
 				D8E7168016B8AF4300686854 /* NUIControlRenderer.m */,
 				89B940361671418100850A9A /* NUILabelRenderer.h */,
 				89B940371671418100850A9A /* NUILabelRenderer.m */,
+				2273AB891B308D51003CC30F /* NUILayerRenderer.h */,
+				2273AB8A1B308D51003CC30F /* NUILayerRenderer.m */,
 				89B940381671418100850A9A /* NUINavigationBarRenderer.h */,
 				89B940391671418100850A9A /* NUINavigationBarRenderer.m */,
 				89B9403A1671418100850A9A /* NUINavigationItemRenderer.h */,
@@ -882,7 +904,7 @@
 		4A0B8628165EE59A005B5756 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Tom Benner";
 				TargetAttributes = {
 					0E8A86AE18EC07C40027F275 = {
@@ -1062,6 +1084,7 @@
 				4A0B8687165F1383005B5756 /* NUIDemoTableViewController.m in Sources */,
 				89B940701671418200850A9A /* NUIAppearance.m in Sources */,
 				89B940711671418200850A9A /* NUIConverter.m in Sources */,
+				9D96826C1B8F3EAA007E14DC /* NUIImageViewRenderer.m in Sources */,
 				EAB69D4C188625E900358420 /* NUIVariableToken.m in Sources */,
 				EAB69D43188625E900358420 /* NUIDeclaration.m in Sources */,
 				89B940721671418200850A9A /* NUIGraphics.m in Sources */,
@@ -1085,6 +1108,7 @@
 				89B940801671418200850A9A /* NUIViewRenderer.m in Sources */,
 				4A779342167560FF00B5EE81 /* UIButton+NUI.m in Sources */,
 				4A7793451675619500B5EE81 /* UITabBar+NUI.m in Sources */,
+				2273AB8D1B308D65003CC30F /* NUICALayer.m in Sources */,
 				EADA480F188F10270060F8BC /* NUIStyleSheetItem.m in Sources */,
 				4A7793481675625800B5EE81 /* NUITabBarItemRenderer.m in Sources */,
 				4A77934B1675635100B5EE81 /* UITabBarItem+NUI.m in Sources */,
@@ -1099,6 +1123,7 @@
 				9343A0691B72DD1E0030CB8B /* NSObject+NUI.m in Sources */,
 				EADA480C188DE0E00060F8BC /* NUIMediaOptionSet.m in Sources */,
 				4A55F08516758E9D0056753C /* UISegmentedControl+NUI.m in Sources */,
+				9D96826F1B8F3F07007E14DC /* NUIBorderedView.m in Sources */,
 				EAB69D4A188625E900358420 /* NUITokeniserDelegate.m in Sources */,
 				EAB69D44188625E900358420 /* NUIDefinition.m in Sources */,
 				4A55F08816758EDA0056753C /* UITableViewCell+NUI.m in Sources */,
@@ -1116,6 +1141,7 @@
 				D8E7168116B8AF4400686854 /* NUIControlRenderer.m in Sources */,
 				D8E7168516B9980300686854 /* UIControl+NUI.m in Sources */,
 				4A38831116C7268000DB99C2 /* NUIWindowRenderer.m in Sources */,
+				2273AB8B1B308D51003CC30F /* NUILayerRenderer.m in Sources */,
 				4A38831516C7269F00DB99C2 /* UIWindow+NUI.m in Sources */,
 				FC280DB916F127DE00B01664 /* UIProgressView+NUI.m in Sources */,
 				4A5B5B2916F6471400CF8D16 /* NUIProgressViewRenderer.m in Sources */,
@@ -1243,11 +1269,14 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1261,7 +1290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1277,10 +1306,13 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1288,7 +1320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

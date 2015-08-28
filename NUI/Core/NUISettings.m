@@ -9,6 +9,7 @@
 #import "NUISettings.h"
 #import "NUIAppearance.h"
 #import "NSObject+NUI.h"
+#import "NUIRenderer.h"
 
 @interface NUISettings ()
 
@@ -18,11 +19,6 @@
 
 @implementation NUISettings
 
-@synthesize autoUpdatePath;
-@synthesize styles;
-@synthesize stylesheetName, additionalStylesheetNames;
-@synthesize stylesheetOrientation;
-
 static NUISettings *instance = nil;
 
 + (void)init
@@ -30,9 +26,26 @@ static NUISettings *instance = nil;
     [self initWithStylesheet:@"NUIStyle"];
 }
 
++ (instancetype)sharedInstance
+{
+    static NUISettings *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    
+    return sharedInstance;
+}
+
++ (NUISettings*)getInstance
+{
+    return [NUISettings sharedInstance];
+}
+
 + (void)initWithStylesheet:(NSString*)name
 {
     instance = [self getInstance];
+    [[NUISwizzler new] swizzleAll];
     instance.stylesheetName = name;
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     instance.stylesheetOrientation = [self stylesheetOrientationFromInterfaceOrientation:orientation];
@@ -121,14 +134,14 @@ static NUISettings *instance = nil;
 {
     for (NSString* key in newStyles) {
         id style = newStyles[key];
-        if (![styles objectForKey:key]) {
-            styles[key] = style;
+        if (![self.styles objectForKey:key]) {
+            self.styles[key] = style;
             continue;
         }
     
         for (NSString *propertyKey in style) {
             id propertyValue = style[propertyKey];
-            styles[key][propertyKey] = propertyValue;
+            self.styles[key][propertyKey] = propertyValue;
         }
     }
 }
@@ -181,6 +194,7 @@ static NUISettings *instance = nil;
 {
     instance = [self getInstance];
     instance.autoUpdatePath = path;
+    [NUIRenderer startWatchStyleSheetForChanges];
 }
 
 + (BOOL)hasProperty:(NSString*)property withExplicitClass:(NSString*)className
@@ -265,6 +279,16 @@ static NUISettings *instance = nil;
 + (UIEdgeInsets)getEdgeInsets:(NSString*)property withClass:(NSString*)className
 {
     return [NUIConverter toEdgeInsets:[self get:property withClass:className]];
+}
+
++ (UIRectEdge)getRectEdge:(NSString*)property withClass:(NSString*)className
+{
+    return [NUIConverter toRectEdge:[self get:property withClass:className]];
+}
+
++ (UIRectCorner)getRectCorner:(NSString*)property withClass:(NSString*)className
+{
+    return [NUIConverter toRectCorner:[self get:property withClass:className]];
 }
 
 + (UITextBorderStyle)getBorderStyle:(NSString*)property withClass:(NSString*)className
@@ -383,7 +407,6 @@ static NUISettings *instance = nil;
     return classes;
 }
 
-
 + (void)setGlobalExclusions:(NSArray *)array
 {
     instance = [self getInstance];
@@ -470,16 +493,30 @@ ofUnsupportedProperties:(NSDictionary*)properties
     return applyStyle;
 }
 
-+ (NUISettings*)getInstance
-{
-    @synchronized(self) {
-        if (instance == nil) {
-            [[NUISwizzler new] swizzleAll];
-            instance = [NUISettings new];
-        }
++ (NSDictionary *)getSpecificStyleWithClass:(NSString *)className {
+    
+    instance = [self getInstance];
+    
+    NSArray *specificStyles = [className componentsSeparatedByString:@":"];
+    NSMutableDictionary *specificNUIStyleDictionary = [[NSMutableDictionary alloc] init];
+    for (NSString *specificStyle in specificStyles) {
+        [specificNUIStyleDictionary addEntriesFromDictionary:instance.styles[specificStyle]];
+    }
+    return specificNUIStyleDictionary;
+}
+
++ (NSDictionary *)getAttributesFromSpecificClass:(NSString *)className {
+    NSDictionary *attributes;
+    NSShadow *shadow = [[NSShadow alloc]init];
+    shadow.shadowOffset = [NUISettings getSize:kTextShadowOffset withClass:className];
+    if ([NUISettings hasProperty:kTextShadowColor withClass:className]) {
+        shadow.shadowColor = [NUISettings getColor:kTextShadowColor withClass:className];
     }
     
-    return instance;
+    attributes =  @{ NSFontAttributeName:[NUISettings getFontWithClass:className],
+                     NSForegroundColorAttributeName:[NUISettings getColor:kFontColor withClass:className],
+                     NSShadowAttributeName:shadow};
+    return attributes;
 }
 
 @end

@@ -14,20 +14,20 @@
 {
     [NUISettings checkUnsupportedPropertiesForObject:cell withClass:className];
     
-    [self renderSizeDependentProperties:cell];
+    //    [self renderSizeDependentProperties:cell];
     
     // Set the labels' background colors to clearColor by default, so they don't show a white
     // background on top of the cell background color
     if (cell.textLabel != nil) {
-        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
         // Set Font
-        [NUIRenderer renderLabel:cell.textLabel withClass:className];
+        [NUIRenderer renderLabel:cell.textLabel withClass:className withSuffix:@"TextLabel"];
+        [cell.textLabel setBackgroundColor:[UIColor clearColor]];
     }
     
     if (cell.detailTextLabel != nil) {
-        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
         // Set font
         [NUIRenderer renderLabel:cell.detailTextLabel withClass:className withSuffix:@"Detail"];
+        [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
     }
     
 }

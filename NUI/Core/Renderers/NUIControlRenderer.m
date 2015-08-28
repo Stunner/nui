@@ -21,7 +21,7 @@
         [control setBackgroundColor: [NUISettings getColor:kBackgroundColor withClass: className]];
     }
     
-    [NUIViewRenderer renderBorder:control withClass:className];
+    [NUIViewRenderer renderBorderAndCorner:control withClass:className];
     [NUIViewRenderer renderShadow:control withClass:className];
 }
 

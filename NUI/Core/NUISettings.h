@@ -138,20 +138,14 @@ static NSString * const kTrackTintColor = @"track-tint-color";
 
 //////////////////////////////////////////////////////
 
-@interface NUISettings : NSObject {
-    NSString *autoUpdatePath;
-    NSMutableDictionary *styles;
-    NSString *stylesheetName;
-    NSMutableArray *additionalStylesheetNames;
-    NSString *stylesheetOrientation;
-}
+@interface NUISettings : NSObject
 
-@property(nonatomic,retain)NSString *autoUpdatePath;
-@property(nonatomic,retain)NSMutableDictionary *styles;
-@property(nonatomic,retain)NSString *stylesheetName;
-@property(nonatomic,retain)NSMutableArray *additionalStylesheetNames;
-@property(nonatomic,retain)NSMutableArray *globalExclusions;
-@property(nonatomic,retain)NSString* stylesheetOrientation;
+@property (nonatomic, copy) NSString *autoUpdatePath;
+@property (nonatomic, strong) NSMutableDictionary *styles;
+@property (nonatomic, copy) NSString *stylesheetName;
+@property (nonatomic, strong) NSMutableArray *additionalStylesheetNames;
+@property (nonatomic, strong) NSMutableArray *globalExclusions;
+@property (nonatomic, copy) NSString *stylesheetOrientation;
 
 + (void)init;
 + (void)initWithStylesheet:(NSString*)name;
@@ -170,6 +164,8 @@ static NSString * const kTrackTintColor = @"track-tint-color";
 + (CGSize)getSize:(NSString*)property withClass:(NSString*)className;
 + (UIOffset)getOffset:(NSString*)property withClass:(NSString*)className;
 + (UIEdgeInsets)getEdgeInsets:(NSString*)property withClass:(NSString*)className;
++ (UIRectEdge)getRectEdge:(NSString *)property withClass:(NSString *)className;
++ (UIRectCorner)getRectCorner:(NSString *)property withClass:(NSString *)className;
 + (UITextBorderStyle)getBorderStyle:(NSString*)property withClass:(NSString*)className;
 + (UITableViewCellSeparatorStyle)getSeparatorStyle:(NSString*)property withClass:(NSString*)className;
 + (UIFont*)getFontWithClass:(NSString*)className;
@@ -183,7 +179,9 @@ static NSString * const kTrackTintColor = @"track-tint-color";
 + (UIControlContentVerticalAlignment)getControlContentVerticalAlignment:(NSString*)property withClass:(NSString*)className;
 + (NSMutableArray*)getGlobalExclusions;
 + (void)setGlobalExclusions:(NSArray*)globalExclusions;
+
 + (NSString *)stylesheetOrientation;
++ (NSDictionary *)getAttributesFromSpecificClass:(NSString *)className;
 
 + (NSDictionary*)unrecognizedPropertiesForClass:(NSString*)className;
 + (void)alertObject:(id)object

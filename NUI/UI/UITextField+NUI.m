@@ -48,18 +48,27 @@
 - (CGRect)override_textRectForBounds:(CGRect)bounds {
     if ([self nuiShouldBeApplied] &&
         [NUISettings hasProperty:@"padding" withClass:self.nuiClass]) {
-        UIEdgeInsets insets = [NUISettings getEdgeInsets:@"padding" withClass:self.nuiClass];
-        return CGRectMake(bounds.origin.x + insets.left,
-                          bounds.origin.y + insets.top,
-                          bounds.size.width - (insets.left + insets.right),
-                          bounds.size.height - (insets.top + insets.bottom));
+        return [self rectForTextFieldWithBounds:bounds];
     } else {
         return [self override_textRectForBounds:bounds];
     }
 }
 
 - (CGRect)override_editingRectForBounds:(CGRect)bounds {
-    return [self textRectForBounds:bounds];
+    if ([self nuiShouldBeApplied] &&
+        [NUISettings hasProperty:@"padding" withClass:self.nuiClass]) {
+        return [self rectForTextFieldWithBounds:bounds];
+    } else {
+        return [self override_editingRectForBounds:bounds];
+    }
+}
+
+- (CGRect)rectForTextFieldWithBounds:(CGRect)bounds {
+    UIEdgeInsets insets = [NUISettings getEdgeInsets:@"padding" withClass:self.nuiClass];
+    return CGRectMake(bounds.origin.x + insets.left,
+                      bounds.origin.y + insets.top,
+                      bounds.size.width - (insets.left + insets.right),
+                      bounds.size.height - (insets.top + insets.bottom));
 }
 
 @end

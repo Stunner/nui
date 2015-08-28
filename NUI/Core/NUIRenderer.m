@@ -18,6 +18,22 @@ static NUIRenderer *gInstance = nil;
     gInstance = [self getInstance];
 }
 
++ (instancetype)sharedInstance
+{
+    static NUIRenderer *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    
+    return sharedInstance;
+}
+
++ (NUIRenderer*)getInstance
+{
+    return [self sharedInstance];
+}
+
 + (void)renderBarButtonItem:(UIBarButtonItem*)item
 {
     [NUIBarButtonItemRenderer render:item withClass:@"BarButton"];
@@ -46,6 +62,11 @@ static NUIRenderer *gInstance = nil;
 + (void)renderControl:(UIControl*)control withClass:(NSString*)className
 {
     [NUIControlRenderer render:control withClass:className];
+}
+
++ (void)renderImageView:(UIImageView*)imageView withClass:(NSString*)className
+{
+    [NUIImageViewRenderer renderImageView:imageView withClass:className];
 }
 
 + (void)renderLabel:(UILabel*)label
@@ -310,23 +331,6 @@ static NUIRenderer *gInstance = nil;
     }
 }
 
-+ (NUIRenderer*)getInstance
-{
-    @synchronized(self) {
-        if (gInstance == nil) {
-            gInstance = [NUIRenderer new];
-            if ([NUISettings autoUpdateIsEnabled]) {
-                [NUIFileMonitor watch:[NUISettings autoUpdatePath] withCallback:^(){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self stylesheetFileChanged];
-                    });
-                }];
-            }
-        }
-    }
-    return gInstance;
-}
-
 + (void)orientationDidChange:(NSNotification *)notification
 {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -335,6 +339,15 @@ static NUIRenderer *gInstance = nil;
     
     if (didReload)
         [NUIRenderer rerender];
+}
+
++ (void)startWatchStyleSheetForChanges {
+    
+    [NUIFileMonitor watch:[NUISettings autoUpdatePath] withCallback:^(){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stylesheetFileChanged];
+        });
+    }];
 }
 
 + (void)stylesheetFileChanged
