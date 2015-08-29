@@ -195,23 +195,53 @@
     }
     propertyName = kImageHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateHighlighted];
+        id appliedProperty = [NUISettings getImage:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateHighlighted
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setImage:appliedProperty forState:UIControlStateHighlighted];
+        }
     }
     propertyName = kImageSelected;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateSelected];
+        id appliedProperty = [NUISettings getImage:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setImage:appliedProperty forState:UIControlStateSelected];
+        }
     }
     propertyName = kImageSelectedHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+        id appliedProperty = [NUISettings getImage:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateHighlighted
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setImage:appliedProperty forState:UIControlStateSelected|UIControlStateHighlighted];
+        }
     }
     propertyName = kImageSelectedDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+        id appliedProperty = [NUISettings getImage:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateDisabled
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setImage:appliedProperty forState:UIControlStateSelected|UIControlStateDisabled];
+        }
     }
     propertyName = kImageDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateDisabled];
+        id appliedProperty = [NUISettings getImage:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateDisabled
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setImage:appliedProperty forState:UIControlStateDisabled];
+        }
     }
     
     [NUILabelRenderer renderText:button.titleLabel withClass:className];
@@ -219,7 +249,13 @@
     // Set text align
     propertyName = kTextAlign;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setContentHorizontalAlignment:[NUISettings getControlContentHorizontalAlignment:propertyName withClass:className]];
+        id appliedProperty = @([NUISettings getControlContentHorizontalAlignment:propertyName withClass:className]);
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:0
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setContentHorizontalAlignment:[appliedProperty integerValue]];
+        }
     }
     
     // Set font color
@@ -251,39 +287,87 @@
     // Set text shadow color
     propertyName = kTextShadowColor;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateNormal];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateNormal
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleShadowColor:appliedProperty forState:UIControlStateNormal];
+        }
     }
     propertyName = kTextShadowColorHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateHighlighted];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateHighlighted
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleShadowColor:appliedProperty forState:UIControlStateHighlighted];
+        }
     }
     propertyName = kTextShadowColorSelected;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleShadowColor:appliedProperty forState:UIControlStateSelected];
+        }
     }
     propertyName = kTextShadowColorSelectedHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateHighlighted
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleShadowColor:appliedProperty forState:UIControlStateSelected|UIControlStateHighlighted];
+        }
     }
     propertyName = kTextShadowColorSelectedDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateDisabled
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleShadowColor:appliedProperty forState:UIControlStateSelected|UIControlStateDisabled];
+        }
     }
     propertyName = kTextShadowColorDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateDisabled];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateDisabled
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleShadowColor:appliedProperty forState:UIControlStateDisabled];
+        }
     }
     
     // title insets
     propertyName = kTitleInsets;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleEdgeInsets:[NUISettings getEdgeInsets:propertyName withClass:className]];
+        id appliedProperty = [NSValue valueWithUIEdgeInsets:[NUISettings getEdgeInsets:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:0
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleEdgeInsets:[appliedProperty UIEdgeInsetsValue]];
+        }
     }
     
     // content insets
     propertyName = kContentInsets;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setContentEdgeInsets:[NUISettings getEdgeInsets:propertyName withClass:className]];
+        id appliedProperty = [NSValue valueWithUIEdgeInsets:[NUISettings getEdgeInsets:propertyName withClass:className]];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:0
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setContentEdgeInsets:[appliedProperty UIEdgeInsetsValue]];
+        }
     }
     
     [NUIViewRenderer renderBorder:button withClass:className];
