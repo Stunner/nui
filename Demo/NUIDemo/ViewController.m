@@ -30,8 +30,10 @@
         NSLog(@"render container: %@", container);
         if (container.recognizedProperty && [container.object isKindOfClass:[STAButton class]]) {
             STAButton *button = container.object;
-            [button setBackgroundColor:container.appliedProperty forState:container.state];
-            return NO;
+            if ([container.propertyName hasPrefix:@"background-color"]) {
+                [button setBackgroundColor:container.appliedProperty forState:container.state];
+                return NO;
+            }
         }
         return YES;
     }];
@@ -39,8 +41,10 @@
         NSLog(@"render container: %@", container);
         if (container.recognizedProperty && [container.object isKindOfClass:[STAButton class]]) {
             STAButton *button = container.object;
-            [button setBackgroundColor:container.appliedProperty forState:container.state];
-            return NO;
+            if ([container.propertyName hasPrefix:@"background-color"]) {
+                [button setBackgroundColor:container.appliedProperty forState:container.state];
+                return NO;
+            }
         }
         return YES;
     }];
