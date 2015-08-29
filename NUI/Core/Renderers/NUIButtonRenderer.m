@@ -113,136 +113,169 @@
     }
     
     // Set background image
-    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
+    propertyName = kBackgroundImage;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
         BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
                                             onObject:button forState:UIControlStateNormal
-                                     appliedProperty:[NUISettings getImage:kBackgroundImage withClass:className]];
+                                     appliedProperty:[NUISettings getImage:propertyName withClass:className]];
         if (applyStyle) {
-            [button setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className]
+            [button setBackgroundImage:[NUISettings getImage:propertyName withClass:className]
                               forState:UIControlStateNormal];
         }
     }
-    if ([NUISettings hasProperty:kBackgroundImageHighlighted withClass:className]) {
+    propertyName = kBackgroundImageHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
         BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
                                             onObject:button forState:UIControlStateHighlighted
-                                     appliedProperty:[NUISettings getImage:kBackgroundImageHighlighted withClass:className]];
+                                     appliedProperty:[NUISettings getImage:propertyName withClass:className]];
         if (applyStyle) {
-            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageHighlighted withClass:className]
+            [button setBackgroundImage:[NUISettings getImage:propertyName withClass:className]
                               forState:UIControlStateHighlighted];
         }
     }
-    if ([NUISettings hasProperty:kBackgroundImageSelected withClass:className]) {
+    propertyName = kBackgroundImageSelected;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
         BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
                                             onObject:button forState:UIControlStateSelected
-                                     appliedProperty:[NUISettings getImage:kBackgroundImageSelected withClass:className]];
+                                     appliedProperty:[NUISettings getImage:propertyName withClass:className]];
         if (applyStyle) {
-            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelected withClass:className]
+            [button setBackgroundImage:[NUISettings getImage:propertyName withClass:className]
                               forState:UIControlStateSelected];
         }
     }
-    if ([NUISettings hasProperty:kBackgroundImageSelectedHighlighted withClass:className]) {
+    propertyName = kBackgroundImageSelectedHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
         BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
                                             onObject:button forState:UIControlStateSelected|UIControlStateHighlighted
-                                     appliedProperty:[NUISettings getImage:kBackgroundImageSelectedHighlighted withClass:className]];
+                                     appliedProperty:[NUISettings getImage:propertyName withClass:className]];
         if (applyStyle) {
-            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelectedHighlighted withClass:className]
+            [button setBackgroundImage:[NUISettings getImage:propertyName withClass:className]
                               forState:UIControlStateSelected|UIControlStateHighlighted];
         }
     }
-    if ([NUISettings hasProperty:kBackgroundImageSelectedDisabled withClass:className]) {
+    propertyName = kBackgroundImageSelectedDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
         BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
                                             onObject:button forState:UIControlStateSelected|UIControlStateDisabled
-                                     appliedProperty:[NUISettings getImage:kBackgroundImageSelectedDisabled withClass:className]];
+                                     appliedProperty:[NUISettings getImage:propertyName withClass:className]];
         if (applyStyle) {
-            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageSelectedDisabled withClass:className]
+            [button setBackgroundImage:[NUISettings getImage:propertyName withClass:className]
                               forState:UIControlStateSelected|UIControlStateDisabled];
         }
     }
-    if ([NUISettings hasProperty:kBackgroundImageDisabled withClass:className]) {
+    propertyName = kBackgroundImageDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
         BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
                                             onObject:button forState:UIControlStateDisabled
-                                     appliedProperty:[NUISettings getImage:kBackgroundImageDisabled withClass:className]];
+                                     appliedProperty:[NUISettings getImage:propertyName withClass:className]];
         if (applyStyle) {
-            [button setBackgroundImage:[NUISettings getImage:kBackgroundImageDisabled withClass:className]
+            [button setBackgroundImage:[NUISettings getImage:propertyName withClass:className]
                               forState:UIControlStateDisabled];
         }
     }
     
     // Set image
-    if ([NUISettings hasProperty:kImage withClass:className]) {
-        [button setImage:[NUISettings getImage:kImage withClass:className] forState:UIControlStateNormal];
+    propertyName = kImage;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateNormal
+                                     appliedProperty:[NUISettings getImage:propertyName withClass:className]];
+        if (applyStyle) {
+            [button setImage:[NUISettings getImage:propertyName withClass:className]
+                    forState:UIControlStateNormal];
+        }
     }
-    if ([NUISettings hasProperty:kImageHighlighted withClass:className]) {
-        [button setImage:[NUISettings getImage:kImageHighlighted withClass:className] forState:UIControlStateHighlighted];
+    propertyName = kImageHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:kImageSelected withClass:className]) {
-        [button setImage:[NUISettings getImage:kImageSelected withClass:className] forState:UIControlStateSelected];
+    propertyName = kImageSelected;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateSelected];
     }
-    if ([NUISettings hasProperty:kImageSelectedHighlighted withClass:className]) {
-        [button setImage:[NUISettings getImage:kImageSelectedHighlighted withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+    propertyName = kImageSelectedHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:kImageSelectedDisabled withClass:className]) {
-        [button setImage:[NUISettings getImage:kImageSelectedDisabled withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+    propertyName = kImageSelectedDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
     }
-    if ([NUISettings hasProperty:kImageDisabled withClass:className]) {
-        [button setImage:[NUISettings getImage:kImageDisabled withClass:className] forState:UIControlStateDisabled];
+    propertyName = kImageDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setImage:[NUISettings getImage:propertyName withClass:className] forState:UIControlStateDisabled];
     }
     
     [NUILabelRenderer renderText:button.titleLabel withClass:className];
     
     // Set text align
-    if ([NUISettings hasProperty:kTextAlign withClass:className]) {
-        [button setContentHorizontalAlignment:[NUISettings getControlContentHorizontalAlignment:kTextAlign withClass:className]];
+    propertyName = kTextAlign;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setContentHorizontalAlignment:[NUISettings getControlContentHorizontalAlignment:propertyName withClass:className]];
     }
     
     // Set font color
-    if ([NUISettings hasProperty:kFontColor withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:kFontColor withClass:className] forState:UIControlStateNormal];
+    propertyName = kFontColor;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateNormal];
     }
-    if ([NUISettings hasProperty:kFontColorHighlighted withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:kFontColorHighlighted withClass:className] forState:UIControlStateHighlighted];
+    propertyName = kFontColorHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:kFontColorSelected withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:kFontColorSelected withClass:className] forState:UIControlStateSelected];
+    propertyName = kFontColorSelected;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected];
     }
-    if ([NUISettings hasProperty:kFontColorSelectedHighlighted withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:kFontColorSelectedHighlighted withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+    propertyName = kFontColorSelectedHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:kFontColorSelectedDisabled withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:kFontColorSelectedDisabled withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+    propertyName = kFontColorSelectedDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
     }
-    if ([NUISettings hasProperty:kFontColorDisabled withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:kFontColorDisabled withClass:className] forState:UIControlStateDisabled];
+    propertyName = kFontColorDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateDisabled];
     }
     
     // Set text shadow color
-    if ([NUISettings hasProperty:kTextShadowColor withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:kTextShadowColor withClass:className] forState:UIControlStateNormal];
+    propertyName = kTextShadowColor;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateNormal];
     }
-    if ([NUISettings hasProperty:kTextShadowColorHighlighted withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:kTextShadowColorHighlighted withClass:className] forState:UIControlStateHighlighted];
+    propertyName = kTextShadowColorHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:kTextShadowColorSelected withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:kTextShadowColorSelected withClass:className] forState:UIControlStateSelected];
+    propertyName = kTextShadowColorSelected;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected];
     }
-    if ([NUISettings hasProperty:kTextShadowColorSelectedHighlighted withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:kTextShadowColorSelectedHighlighted withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+    propertyName = kTextShadowColorSelectedHighlighted;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
     }
-    if ([NUISettings hasProperty:kTextShadowColorSelectedDisabled withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:kTextShadowColorSelectedDisabled withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+    propertyName = kTextShadowColorSelectedDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
     }
-    if ([NUISettings hasProperty:kTextShadowColorDisabled withClass:className]) {
-        [button setTitleShadowColor:[NUISettings getColor:kTextShadowColorDisabled withClass:className] forState:UIControlStateDisabled];
+    propertyName = kTextShadowColorDisabled;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleShadowColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateDisabled];
     }
     
     // title insets
-    if ([NUISettings hasProperty:kTitleInsets withClass:className]) {
-        [button setTitleEdgeInsets:[NUISettings getEdgeInsets:kTitleInsets withClass:className]];
+    propertyName = kTitleInsets;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setTitleEdgeInsets:[NUISettings getEdgeInsets:propertyName withClass:className]];
     }
     
     // content insets
-    if ([NUISettings hasProperty:kContentInsets withClass:className]) {
-        [button setContentEdgeInsets:[NUISettings getEdgeInsets:kContentInsets withClass:className]];
+    propertyName = kContentInsets;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        [button setContentEdgeInsets:[NUISettings getEdgeInsets:propertyName withClass:className]];
     }
     
     [NUIViewRenderer renderBorderAndCorner:button withClass:className];
