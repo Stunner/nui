@@ -261,27 +261,63 @@
     // Set font color
     propertyName = kFontColor;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateNormal];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateNormal
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleColor:appliedProperty forState:UIControlStateNormal];
+        }
     }
     propertyName = kFontColorHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateHighlighted];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateHighlighted
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleColor:appliedProperty forState:UIControlStateHighlighted];
+        }
     }
     propertyName = kFontColorSelected;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleColor:appliedProperty forState:UIControlStateSelected];
+        }
     }
     propertyName = kFontColorSelectedHighlighted;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateHighlighted];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateHighlighted
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleColor:appliedProperty forState:UIControlStateSelected|UIControlStateHighlighted];
+        }
     }
     propertyName = kFontColorSelectedDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateSelected|UIControlStateDisabled];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateSelected|UIControlStateDisabled
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleColor:appliedProperty forState:UIControlStateSelected|UIControlStateDisabled];
+        }
     }
     propertyName = kFontColorDisabled;
     if ([NUISettings hasProperty:propertyName withClass:className]) {
-        [button setTitleColor:[NUISettings getColor:propertyName withClass:className] forState:UIControlStateDisabled];
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:button forState:UIControlStateDisabled
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [button setTitleColor:appliedProperty forState:UIControlStateDisabled];
+        }
     }
     
     // Set text shadow color
