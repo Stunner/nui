@@ -418,6 +418,7 @@
     [NUIViewRenderer renderShadow:button withClass:className];
 }
 
+// deprecated: not currently used
 + (NSSet *)unrecognizedPropertiesForClass:(NSString *)className {
     //TODO: make this more efficient by making this object a singleton so that this set doesn't need to be reinitialized each time this method is called
     NSArray *propertiesArray = @[kPadding, kBackgroundColor, kBackgroundColorHighlighted,

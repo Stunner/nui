@@ -47,8 +47,6 @@ static NSString * const kBackgroundImageSelectedHighlighted = @"background-image
 static NSString * const kBackgroundImageSelectedDisabled = @"background-image-selected-disabled";
 static NSString * const kBackgroundImageDisabled = @"background-image-disabled";
 
-static NSString * const kBarTintColor = @"bar-tint-color";
-
 static NSString * const kBorderStyle = @"border-style";
 static NSString * const kBorderColor = @"border-color";
 static NSString * const kBorderWidth = @"border-width";
@@ -126,6 +124,7 @@ static NSString * const kTextShadowOffset = @"text-shadow-offset";
 static NSString * const kTextTransform = @"text-transform";
 
 static NSString * const kTintColor = @"tint-color";
+static NSString * const kBarTintColor = @"bar-tint-color";
 static NSString * const kOnTintColor = @"on-tint-color";
 static NSString * const kThumbTintColor = @"thumb-tint-color";
 static NSString * const kThumbImage = @"thumb-image";
