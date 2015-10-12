@@ -421,6 +421,8 @@ static NUISettings *instance = nil;
     return UIInterfaceOrientationIsLandscape(orientation) ? @"landscape" : @"portrait";
 }
 
+#pragma mark - Custom Properties Logic
+
 + (NSDictionary*)unrecognizedPropertiesForClass:(NSString*)className
 {
     NSSet *propertyKeys = [NSSet setWithArray:[self getInstance].supportedPropertiesArray];
@@ -500,6 +502,8 @@ ofUnsupportedProperties:(NSDictionary*)properties
                                forState:state
                         appliedProperty:appliedProperty];
 }
+
+#pragma mark -
 
 + (NSDictionary *)getSpecificStyleWithClass:(NSString *)className {
     

@@ -14,16 +14,41 @@
 {
     [NUISettings checkUnsupportedPropertiesForObject:view withClass:className];
     
-    if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
-        if ([NUISettings hasProperty:kBackgroundRepeat withClass:className] && ![NUISettings getBoolean:kBackgroundRepeat withClass:className]) {
-            view.layer.contents = (__bridge id)[NUISettings getImage:kBackgroundImage withClass:className].CGImage;
-        } else {
-            [view setBackgroundColor: [NUISettings getColorFromImage:kBackgroundImage withClass:className]];
+    NSString *propertyName = kBackgroundImage;
+    NSString *propertyName2 = kBackgroundColor;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        id appliedProperty = [NUISettings getImage:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:view forState:UIControlStateNormal
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            if ([NUISettings hasProperty:kBackgroundRepeat withClass:className] && ![NUISettings getBoolean:kBackgroundRepeat withClass:className]) {
+                view.layer.contents = (__bridge id)[NUISettings getImage:propertyName withClass:className].CGImage;
+            } else {
+                [view setBackgroundColor:[NUISettings getColorFromImage:propertyName withClass:className]];
+            }
         }
-    } else if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
-        [view setBackgroundColor: [NUISettings getColor:kBackgroundColor withClass:className]];
+    } else if ([NUISettings hasProperty:propertyName2 withClass:className]) {
+        id appliedProperty = [NUISettings getColor:propertyName2 withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName2 withClass:className
+                                            onObject:view forState:UIControlStateNormal
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [view setBackgroundColor:[NUISettings getColor:propertyName2 withClass:className]];
+        }
     }
 
+    propertyName = kTintColor;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:view forState:UIControlStateNormal
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [view setTintColor:[NUISettings getColor:propertyName withClass:className]];
+        }
+    }
+    
     [self renderSize:view withClass:className];
     [self renderBorder:view withClass:className];
     [self renderShadow:view withClass:className];
@@ -51,23 +76,51 @@
 {
     CALayer *layer = [view layer];
     
-    if ([NUISettings hasProperty:kShadowRadius withClass:className]) {
-        [layer setShadowRadius:[NUISettings getFloat:kShadowRadius withClass:className]];
+    NSString *propertyName = kShadowRadius;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        float appliedProperty = [NUISettings getFloat:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:view forState:UIControlStateNormal
+                                     appliedProperty:@(appliedProperty)];
+        if (applyStyle) {
+            [layer setShadowRadius:[NUISettings getFloat:propertyName withClass:className]];
+        }
+    }
+    propertyName = kShadowOffset;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        CGSize appliedProperty = [NUISettings getSize:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:view forState:UIControlStateNormal
+                                     appliedProperty:[NSValue valueWithCGSize:appliedProperty]];
+        if (applyStyle) {
+            [layer setShadowOffset:[NUISettings getSize:propertyName withClass:className]];
+        }
     }
     
-    if ([NUISettings hasProperty:kShadowOffset withClass:className]) {
-        [layer setShadowOffset:[NUISettings getSize:kShadowOffset withClass:className]];
+    propertyName = kShadowColor;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        id appliedProperty = [NUISettings getColor:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:view forState:UIControlStateNormal
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [layer setShadowColor:[NUISettings getColor:propertyName withClass:className].CGColor];
+        }
     }
     
-    if ([NUISettings hasProperty:kShadowColor withClass:className]) {
-        [layer setShadowColor:[NUISettings getColor:kShadowColor withClass:className].CGColor];
-    }
-    
-    if ([NUISettings hasProperty:kShadowOpacity withClass:className]) {
-        [layer setShadowOpacity:[NUISettings getFloat:kShadowOpacity withClass:className]];
+    propertyName = kShadowOpacity;
+    if ([NUISettings hasProperty:propertyName withClass:className]) {
+        float appliedProperty = [NUISettings getFloat:propertyName withClass:className];
+        BOOL applyStyle = [NUISettings applyProperty:propertyName withClass:className
+                                            onObject:view forState:UIControlStateNormal
+                                     appliedProperty:@(appliedProperty)];
+        if (applyStyle) {
+            [layer setShadowOpacity:[NUISettings getFloat:propertyName withClass:className]];
+        }
     }
 }
 
+// TODO: add render override support
 + (void)renderSize:(UIView*)view withClass:(NSString*)className
 {
     CGFloat height = view.frame.size.height;
