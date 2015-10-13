@@ -16,7 +16,13 @@
     [NUISettings checkUnsupportedPropertiesForObject:textField withClass:className];
     
     if ([NUISettings hasFontPropertiesWithClass:className]) {
-        [textField setFont:[NUISettings getFontWithClass:className baseFont:textField.font]];
+        id appliedProperty = [NUISettings getFontWithClass:className baseFont:textField.font];
+        BOOL applyStyle = [NUISettings applyProperties:@[kFontName, kFontSize] withClass:className
+                                            onObject:textField forState:UIControlStateNormal
+                                     appliedProperty:appliedProperty];
+        if (applyStyle) {
+            [textField setFont:[NUISettings getFontWithClass:className baseFont:textField.font]];
+        }
     }
     
     // Set font color
