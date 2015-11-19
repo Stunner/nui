@@ -1,5 +1,11 @@
 NUI
 ===
+
+[![Build Status](https://travis-ci.org/tombenner/nui.svg?branch=master)](https://travis-ci.org/tombenner/nui)
+[![Version](https://img.shields.io/cocoapods/v/NUI.svg?style=flat)](http://cocoapods.org/pods/KeepBackgroundCell)
+[![License](https://img.shields.io/cocoapods/l/NUI.svg?style=flat)](http://cocoapods.org/pods/KeepBackgroundCell)
+[![Platform](https://img.shields.io/cocoapods/p/NUI.svg?style=flat)](http://cocoapods.org/pods/KeepBackgroundCell)
+
 Style iOS apps with a stylesheet, similar to CSS
 
 Description
@@ -74,6 +80,14 @@ If you choose not to use CocoaPods, you can install NUI with these steps:
 4. Add `[NUISettings init];` to `application:didFinishLaunchingWithOptions` in AppDelegate.m (like [this](https://github.com/tombenner/nui/blob/master/Demo/NUIDemo/AppDelegate.m))
 
 The Demo uses CocoaPods, so you'll want to [install CocoaPods](http://cocoapods.org/), run `pod install` in the `Demo` directory, and then open the .xcworkspace to open the project.
+
+### Swift
+
+If you're using Swift, in addition to the steps above, you'll also want to add the following `#import` in your bridging header:
+
+```objective-c
+#import <NUI/NUISettings.h>
+```
 
 Usage
 -----
@@ -594,7 +608,17 @@ Style Value Types
 * **BorderStyle** - A border style, as rendered by a UITextBorderStyle. Accepted values are `none`, `line`, `bezel`, and `rounded`.
 * **Box** - A series of 1 to 4 integers that specify the widths of a box's edges. Interpreted like CSS's `padding` and `margin` properties (top, right, bottom, left). Examples: `15` (a box with a width of 15 for each edge), `10 15` (a box with a width of 10 for the top and bottom edges and 15 for the right and left edges)
 * **Color** - A hex color (e.g. `#FF0000`); a rgb, rgba, hsl, or hsla expression (e.g. `rgb(255,0,0)` or `hsla(0.5, 0, 1.0, 0.5)`); or a color name that UIColor has a related method name for (e.g. `red`, `yellow`, `clear`). If `[UIColor redColor]` is supported, then `red` is supported.
-* **FontName** - A font name. See available values [here](http://iosfonts.com/). Can also be `system`, `boldSystem` or `italicSystem`.
+* **FontName** - A font name. See available values [here](http://iosfonts.com/). Can also be one of the following:
+  * `system`
+  * `boldSystem`
+  * `italicSystem`
+  * `blackSystem`
+  * `heavySystem`
+  * `lightSystem`
+  * `mediumSystem`
+  * `semiboldSystem`
+  * `thinSystem`
+  * `ultraLightSystem`
 * **Gradient** - Two Colors that will create a vertical gradient. background-color-top and background-color-bottom need to be defined in separate .nss properties.
 * **Image** - A name of an image, as used in `[UIImage imageNamed:name]` (e.g. `MyImage.png`).
 * **Number** - A number (e.g. `-1`, `4.5`)
