@@ -122,6 +122,15 @@
     XCTAssertEqual(font.pointSize, 16, @"NUI should set button font size");
 }
 
+#pragma mark - Padding
+
+// padding (Box)
+- (void)testSetPadding
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(7, 7, 7, 7);
+    XCTAssertTrue(UIEdgeInsetsEqualToEdgeInsets(_sut.titleEdgeInsets, insets), @"NUI should set button padding");
+}
+
 #pragma mark - Shadows
 
 // shadow-color (Color)
