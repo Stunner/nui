@@ -115,6 +115,17 @@
     }
 }
 
+- (UIColor *)backgroundColorForState:(UIControlState)state {
+    if (self.state == state) {
+        return self.backgroundColor;
+    }
+    UIColor *returnable = [self.backgroundColorDictionary objectForKey:@(state)];
+    if ([returnable isMemberOfClass:[NSNull class]]) {
+        returnable = nil;
+    }
+    return returnable;
+}
+
 #pragma mark Helper Methods
 
 - (void)stateChangedFrom:(UIControlState)oldState to:(UIControlState)newState {

@@ -11,11 +11,12 @@
 #import "UIButton+NUI.h"
 #import "NUIRenderer.h"
 #import "NSObject+NUI.h"
+#import "STAButton.h"
 
 static NSString * const NUIButtonBackgroundColorTestsStyleClass = @"ButtonWithColor";
 
 @interface NUIButtonOverrideTests : XCTestCase
-@property (strong, nonatomic) UIButton *sut;
+@property (strong, nonatomic) STAButton *sut;
 @property (strong, nonatomic) NSMutableSet *containersSet;
 @end
 
@@ -26,15 +27,33 @@ static NSString * const NUIButtonBackgroundColorTestsStyleClass = @"ButtonWithCo
     
     [NUISettings initWithStylesheet:@"TestTheme.NUI"];
     
-    _sut = [[UIButton alloc] init];
+    _sut = [[STAButton alloc] init];
     _sut.nuiClass = NUIButtonBackgroundColorTestsStyleClass;
     
     self.containersSet = [NSMutableSet set];
     __weak typeof(self) weakSelf = self;
     [_sut setRenderOverrideBlock:^BOOL(NUIRenderContainer *container){
          __strong typeof(self) strongSelf = weakSelf;
-        NSLog(@"render container: %@", container);
+        
         [strongSelf.containersSet addObject:container];
+        if (container.recognizedProperty) {
+            // for purposes of this test, overrride background-color to yellow
+            if ([container.propertyName isEqualToString:kBackgroundColor]) {
+                STAButton *button = container.object;
+                [button setBackgroundColor:[UIColor yellowColor] forState:UIControlStateNormal];
+                return NO;
+            }
+            if ([container.propertyName isEqualToString:kBackgroundColorSelected]) {
+                STAButton *button = container.object;
+                [button setBackgroundColor:[UIColor orangeColor] forState:UIControlStateSelected];
+                return NO;
+            }
+            if ([container.propertyName isEqualToString:kBackgroundColorSelectedHighlighted]) {
+                STAButton *button = container.object;
+                [button setBackgroundColor:[UIColor purpleColor] forState:UIControlStateDisabled];
+                return YES;
+            }
+        }
         return YES;
     }];
     
@@ -45,6 +64,28 @@ static NSString * const NUIButtonBackgroundColorTestsStyleClass = @"ButtonWithCo
     _sut = nil;
     
     [super tearDown];
+}
+
+- (void)testOverriddenProperties {
+    XCTAssertNil([_sut backgroundImageForState:UIControlStateNormal], @"Background image for state non-nil.");
+    XCTAssertEqualObjects([_sut backgroundColorForState:UIControlStateNormal], [UIColor yellowColor], @"Didn't override background color.");
+    
+    XCTAssertNotNil([_sut backgroundImageForState:UIControlStateDisabled], @"Background image for state nil.");
+    XCTAssertNil([_sut backgroundColorForState:UIControlStateHighlighted], @"Background color for state non-nil.");
+    
+    // ensure that nui didn't attempt to override
+    XCTAssertNil([_sut backgroundImageForState:UIControlStateSelected], @"Background image for state non-nil.");
+    XCTAssertEqualObjects([_sut backgroundColorForState:UIControlStateSelected], [UIColor orangeColor], @"Didn't override background color.");
+    
+    XCTAssertNotNil([_sut backgroundImageForState:UIControlStateSelected|UIControlStateHighlighted], @"Background image for state nil.");
+    XCTAssertNil([_sut backgroundColorForState:UIControlStateSelected|UIControlStateHighlighted], @"Background color for state non-nil.");
+    
+    XCTAssertNotNil([_sut backgroundImageForState:UIControlStateSelected|UIControlStateDisabled], @"Background image for state nil.");
+    XCTAssertNil([_sut backgroundColorForState:UIControlStateSelected|UIControlStateDisabled], @"Background color for state non-nil.");
+    
+    // ensure that nui did indeed attempt to override
+    XCTAssertNotNil([_sut backgroundImageForState:UIControlStateDisabled], @"Background image for state nil.");
+    XCTAssertEqualObjects([_sut backgroundColorForState:UIControlStateDisabled], [UIColor purpleColor], @"Didn't override background color.");
 }
 
 - (void)testContainerContents {
@@ -132,6 +173,7 @@ static NSString * const NUIButtonBackgroundColorTestsStyleClass = @"ButtonWithCo
     XCTAssertTrue([self.containersSet containsObject:container], @"Container isn't contained within set.");
     [self.containersSet removeObject:container];
     
+    // verify that render override block wasn't called in excess
     XCTAssertTrue(self.containersSet.count == 0, @"Set still contains objects.");
 }
 

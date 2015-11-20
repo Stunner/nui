@@ -14,6 +14,7 @@
 
 typedef void (^ StateChangeBlock)(UIControlState, UIControlState);
 
+- (UIColor *)backgroundColorForState:(UIControlState)state;
 - (void)setBackgroundColor:(UIColor *)backgroundColor
                   forState:(UIControlState)state;
 
