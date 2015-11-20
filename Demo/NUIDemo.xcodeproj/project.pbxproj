@@ -114,6 +114,7 @@
 		89B940801671418200850A9A /* NUIViewRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B940451671418100850A9A /* NUIViewRenderer.m */; };
 		89B940811671418200850A9A /* NUIStyle.nss in Resources */ = {isa = PBXBuildFile; fileRef = 89B940461671418100850A9A /* NUIStyle.nss */; };
 		89B940841671418200850A9A /* NUIViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 89B9404A1671418100850A9A /* NUIViewBackground.png */; };
+		930F266B1BFEBD6900056950 /* NUIButtonOverrideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 930F266A1BFEBD6900056950 /* NUIButtonOverrideTests.m */; };
 		9343A0691B72DD1E0030CB8B /* NSObject+NUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9343A0681B72DD1E0030CB8B /* NSObject+NUI.m */; };
 		9344BECD1B50B28F0068F2C6 /* STAButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9344BEA71B50B28F0068F2C6 /* STAButton.m */; };
 		9344BEE71B6321680068F2C6 /* NUIRenderContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9344BEE61B6321680068F2C6 /* NUIRenderContainer.m */; };
@@ -300,6 +301,7 @@
 		89B940451671418100850A9A /* NUIViewRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIViewRenderer.m; sourceTree = "<group>"; };
 		89B940461671418100850A9A /* NUIStyle.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NUIStyle.nss; sourceTree = "<group>"; };
 		89B9404A1671418100850A9A /* NUIViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NUIViewBackground.png; sourceTree = "<group>"; };
+		930F266A1BFEBD6900056950 /* NUIButtonOverrideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUIButtonOverrideTests.m; sourceTree = "<group>"; };
 		9343A0671B72DD1E0030CB8B /* NSObject+NUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NUI.h"; sourceTree = "<group>"; };
 		9343A0681B72DD1E0030CB8B /* NSObject+NUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NUI.m"; sourceTree = "<group>"; };
 		9344BEA61B50B28F0068F2C6 /* STAButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAButton.h; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				0E55162419388CC500B293B7 /* NUIButtonRendererForegroundImageTests.m */,
 				5B5888C51992BDA7005F1ACB /* NUIButtonRendererSubdirectoryImageTests.m */,
 				0E55161B1938891000B293B7 /* NUIButtonRendererTests.m */,
+				930F266A1BFEBD6900056950 /* NUIButtonOverrideTests.m */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -1076,6 +1079,7 @@
 				0EA8AA85193DB62900E1BD29 /* NUISwitchRendererTests.m in Sources */,
 				0EA8AA8A193DBD3200E1BD29 /* NUITabBarRendererGradientTests.m in Sources */,
 				0E55162E1938D5FD00B293B7 /* UIBarButtonRendererBackgroundColorTests.m in Sources */,
+				930F266B1BFEBD6900056950 /* NUIButtonOverrideTests.m in Sources */,
 				0EA8AA7D193CCB2C00E1BD29 /* NUISegmentedControlRendererBackgroundImagesTests.m in Sources */,
 				0E3F5DFD193C5FB9003F6A77 /* NUINavigationBarRendererTests.m in Sources */,
 				0E3F5E0D193C7EA1003F6A77 /* NUISearchBarRendererGradientTest.m in Sources */,

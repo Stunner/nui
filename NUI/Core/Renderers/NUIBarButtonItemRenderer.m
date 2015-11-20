@@ -20,7 +20,8 @@
     } else if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
         [item setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
     } else if ([NUISettings hasProperty:kBackgroundColor withClass:className] ||
-               [NUISettings hasProperty:kBackgroundColorTop withClass:className]) {
+               [NUISettings hasProperty:kBackgroundColorTop withClass:className])
+    {
         CALayer *layer = [CALayer layer];
         [layer setFrame:CGRectMake(0, 0, 30, 26)];
         [layer setMasksToBounds:YES];
