@@ -18,10 +18,6 @@
         [bar setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className]];
     }
     
-    if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
-        [bar setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
-    }
-    
     if ([NUISettings hasProperty:kSelectedImage withClass:className]) {
         [bar setSelectionIndicatorImage:[NUISettings getImage:kSelectedImage withClass:className]];
     }
@@ -41,6 +37,14 @@
                 [bar setSelectionIndicatorImage:[NUISettings getImage:kBackgroundImageSelected withClass:itemClass]];
             }
         }
+    }
+    
+    if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
+        [bar setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
+    }
+    
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [bar setBackgroundColor:[NUISettings getColor:kBackgroundColor withClass:className]];
     }
 }
 

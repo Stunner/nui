@@ -23,6 +23,10 @@
     if ([NUISettings hasProperty:kBackgroundTintColor withClass:className]) {
         [bar setTintColor:[NUISettings getColor:kBackgroundTintColor withClass:className]];
     }
+    
+    if ([NUISettings hasProperty:kBackgroundColor withClass:className]) {
+        [bar setBackgroundColor:[NUISettings getColor:kBackgroundColor withClass:className]];
+    }
 
     if ([NUISettings hasProperty:kBackgroundImage withClass:className]) {
         [bar setBackgroundImage:[NUISettings getImage:kBackgroundImage withClass:className] forBarMetrics:UIBarMetricsDefault];
